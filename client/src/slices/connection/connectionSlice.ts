@@ -1,6 +1,8 @@
+import type { PayloadAction } from '@reduxjs/toolkit'
+
 import { createSlice } from '@reduxjs/toolkit'
 
-import { createInvitation, fetchConnectionById } from './connectionThunks'
+import { createInvitation, fetchConnection } from './connectionThunks'
 
 export interface ConnectionState {
   id?: string
@@ -20,17 +22,17 @@ const connectionSlice = createSlice({
   name: 'connection',
   initialState,
   reducers: {
-    clearConnection: (state) => {
-      state.id = undefined
-      state.state = undefined
-      state.invitationUrl = undefined
-      state.isLoading = false
+    setConnectionId(state, action: PayloadAction<string>) {
+      state.id = action.payload
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(createInvitation.pending, (state) => {
         state.isLoading = true
+        state.invitationUrl = undefined
+        state.id = undefined
+        state.state = undefined
       })
       .addCase(createInvitation.fulfilled, (state, action) => {
         state.isLoading = false
@@ -38,22 +40,16 @@ const connectionSlice = createSlice({
         state.state = action.payload.connection.state
         state.invitationUrl = action.payload.invitationUrl
       })
-      .addCase(fetchConnectionById.pending, (state) => {
+      .addCase(fetchConnection.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(fetchConnectionById.fulfilled, (state, action) => {
+      .addCase(fetchConnection.fulfilled, (state, action) => {
         state.isLoading = false
         state.state = action.payload.state
-      })
-      .addCase('clearUseCase', (state) => {
-        state.id = undefined
-        state.state = undefined
-        state.invitationUrl = undefined
-        state.isLoading = false
       })
   },
 })
 
-export const { clearConnection } = connectionSlice.actions
+export const { setConnectionId } = connectionSlice.actions
 
 export default connectionSlice.reducer

@@ -2,12 +2,7 @@ import type { CredentialRecord } from '@aries-framework/core'
 
 import { createSlice } from '@reduxjs/toolkit'
 
-import {
-  fetchCredentialsByConId,
-  fetchCredentialById,
-  issueCredential,
-  deleteCredentialById,
-} from './credentialsThunks'
+import { fetchCredentialById, deleteCredentialById, claimCredential } from './credentialsThunks'
 
 interface CredentialState {
   credentials: CredentialRecord[]
@@ -20,6 +15,7 @@ const initialState: CredentialState = {
   issuedCredentials: [],
   isLoading: true,
 }
+
 const credentialSlice = createSlice({
   name: 'credentials',
   initialState,
@@ -33,21 +29,14 @@ const credentialSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCredentialsByConId.pending, (state) => {
-        state.isLoading = true
-      })
-      .addCase(fetchCredentialsByConId.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.credentials = action.payload
-      })
-      .addCase(issueCredential.rejected, (state, action) => {
+      .addCase(claimCredential.rejected, (state, action) => {
         // eslint-disable-next-line no-console
         console.log(action.error)
       })
-      .addCase(issueCredential.pending, (state) => {
+      .addCase(claimCredential.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(issueCredential.fulfilled, (state, action) => {
+      .addCase(claimCredential.fulfilled, (state, action) => {
         state.isLoading = false
         state.credentials.push(action.payload)
       })
@@ -75,13 +64,6 @@ const credentialSlice = createSlice({
         state.isLoading = false
         state.credentials.filter((cred) => cred.id !== action.payload)
         return state
-      })
-      .addCase('clearUseCase', (state) => {
-        state.credentials.map(
-          (x) => (x.state === 'credential-issued' || x.state === 'done') && state.issuedCredentials.push(x)
-        )
-        state.credentials = []
-        state.isLoading = false
       })
   },
 })

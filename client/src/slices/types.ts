@@ -54,11 +54,7 @@ export interface RequestedCredential {
 }
 
 export interface CredentialData {
-  id: string
-  icon: string
-  name: string
   credentialDefinitionId: string
-  properties?: { name: string }[]
   attributes?: Attribute[]
 }
 
@@ -95,9 +91,10 @@ export interface EndStepperItem {
 }
 
 export interface Entity {
-  name: string
-  icon: string
+  name?: string
+  icon?: string
   imageUrl?: string
+  alias?: string
 }
 
 export interface Colors {

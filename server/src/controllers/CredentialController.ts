@@ -4,7 +4,7 @@ import { Inject, Service } from 'typedi'
 
 import { CredDefService } from './CredDefService'
 
-@JsonController('/credentials')
+@JsonController('/custom/credentials')
 @Service()
 export class CredentialController {
   @Inject()
@@ -24,5 +24,16 @@ export class CredentialController {
       }
       throw new InternalServerError(`something went wrong: ${error}`)
     }
+  }
+
+  @Get('/credential-definition/:tag')
+  public async getCredentialDefinitionForSchemaId(@Param('tag') tag: string) {
+    const credDef = this.service.getCredentialDefinitionIdByTag(tag)
+
+    if (!credDef) {
+      throw new NotFoundError(`CredentialDefinition not found for tag ${tag}`)
+    }
+
+    return credDef
   }
 }

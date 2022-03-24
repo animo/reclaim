@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 
 import { buttonHover, fadeDelay } from '../FramerAnimations'
 import { signOut } from '../slices/user/userSlice'
-
 export const DashBoard = () => {
   const dispatch = useDispatch()
 
