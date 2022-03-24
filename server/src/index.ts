@@ -35,7 +35,7 @@ process.on('unhandledRejection', (error) => {
 const run = async () => {
   const endpoint = process.env.AGENT_ENDPOINT ?? (await connect(5001))
   const agentConfig: InitConfig = {
-    label: 'Animo',
+    label: 'Fly',
     walletConfig: {
       id: 'Animo Solutions',
       key: process.env.AGENT_WALLET_KEY ?? 'Animo',
@@ -71,7 +71,6 @@ const run = async () => {
   const app: Express = createExpressServer({
     controllers: [__dirname + '/controllers/**/*.ts', __dirname + '/controllers/**/*.js'],
     cors: true,
-    routePrefix: '/demo',
   })
 
   httpInbound.app.get('/', async (req, res) => {
@@ -94,10 +93,6 @@ const run = async () => {
 
   const job = AgentCleanup(agent)
   job.start()
-
-  app.get('/server/last-reset', async (req, res) => {
-    res.send(job.lastDate())
-  })
 
   await startServer(agent, {
     port: 5000,
