@@ -2,6 +2,8 @@ import type { Attribute } from '../types'
 
 import { createSlice } from '@reduxjs/toolkit'
 
+import { claimCredential } from '../credentials/credentialsThunks'
+
 import { register, signIn } from './userThunks'
 
 export interface User {
@@ -20,10 +22,12 @@ export interface UserCredential {
 interface UserState {
   isSignedIn: boolean
   user?: User
+  claimedCredentials: string[]
 }
 
 const initialState: UserState = {
   isSignedIn: false,
+  claimedCredentials: [],
 }
 
 const userSlice = createSlice({
@@ -49,6 +53,10 @@ const userSlice = createSlice({
     builder.addCase(signIn.fulfilled, (state, action) => {
       state.isSignedIn = true
       state.user = action.payload
+    })
+
+    builder.addCase(claimCredential.pending, (state, action) => {
+      state.claimedCredentials.push(action.meta.arg)
     })
   },
 })

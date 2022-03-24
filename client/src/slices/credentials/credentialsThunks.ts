@@ -50,19 +50,9 @@ export const claimCredential = createAsyncThunk('credentials/claim', async (cred
   })
 
   while (credential.data.state !== 'done' && credential.data.state !== 'credential-issued') {
-    credential = await Api.getCredentialById(credentialId)
+    credential = await Api.getCredentialById(credential.data.id)
     await new Promise((resolve) => setTimeout(resolve, 1000))
   }
 
   return credential.data
-})
-
-export const fetchCredentialById = createAsyncThunk('credentials/fetchById', async (id: string) => {
-  const response = await Api.getCredentialById(id)
-  return response.data
-})
-
-export const deleteCredentialById = createAsyncThunk('credentials/deleteById', async (id: string) => {
-  await Api.deleteCredentialById(id)
-  return id
 })
