@@ -14,7 +14,7 @@
 - [Yarn](https://classic.yarnpkg.com/en/docs/install)
 - [Git](https://git-scm.com/downloads) - You probably already have this
 
-### 🖥  Client
+### 🖥 Client
 
 Copy the `.env.example` file to a `.env` file and set the environment variables.
 
@@ -23,10 +23,9 @@ cd client
 cp .env.example .env
 ```
 
-| Variable                        | Description                                                                                                           |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `REACT_APP_HOST_BACKEND`        | Used in the frontend application to connect with the backend. Should be `http://localhost:5000` for development.      |
-
+| Variable                 | Description                                                                                                      |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `REACT_APP_HOST_BACKEND` | Used in the frontend application to connect with the backend. Should be `http://localhost:5000` for development. |
 
 ### 🎛️ Server
 
@@ -37,11 +36,11 @@ cd server
 cp .env.example .env
 ```
 
-| Variable                        | Description                                                                                                           |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `AGENT_PUBLIC_DID_SEED`         | Used in the backend application for the agent. Should be set to your agent's public DID in development/production.    |
-| `AGENT_ENDPOINT`                | Used in the backend application for the agent. Should be set to your agent's endpoint in development/production.      |
-| `AGENT_WALLET_KEY`              | Used in the backend application for the agent. Should be set to your agent's wallet key in development/production.      |
+| Variable                | Description                                                                                                        |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `AGENT_PUBLIC_DID_SEED` | Used in the backend application for the agent. Should be set to your agent's public DID in development/production. |
+| `AGENT_ENDPOINT`        | Used in the backend application for the agent. Should be set to your agent's endpoint in development/production.   |
+| `AGENT_WALLET_KEY`      | Used in the backend application for the agent. Should be set to your agent's wallet key in development/production. |
 
 ### Node version
 
@@ -62,4 +61,5 @@ yarn dev
 ```
 
 ## How To Contribute
+
 You're welcome to contribute to this demo. Please make sure to open an issue first!
