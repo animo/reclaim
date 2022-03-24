@@ -21,7 +21,8 @@ const styles = (cardColor: string): Record<string, React.CSSProperties> => {
       padding: 15,
       position: 'relative',
       color: 'white',
-      margin: 15,
+      margin: 20,
+      marginBottom: 40,
     },
     headerContainer: {
       display: 'flex',
