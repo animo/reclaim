@@ -44,12 +44,17 @@ export const claimCredential = createAsyncThunk('credentials/claim', async (cred
   }
 
   // Issue Credential
-  const response = await Api.issueCredential(state.connection.id, {
+  let credential = await Api.issueCredential(state.connection.id, {
     credentialDefinitionId: organizationCredential.credentialDefinitionId,
     attributes: userCredential.attributes,
   })
 
-  return response.data
+  while (credential.data.state !== 'done' && credential.data.state !== 'credential-issued') {
+    credential = await Api.getCredentialById(credentialId)
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+  }
+
+  return credential.data
 })
 
 export const fetchCredentialById = createAsyncThunk('credentials/fetchById', async (id: string) => {
