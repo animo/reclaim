@@ -17,6 +17,8 @@ module.exports = {
       xl: '1440px',
     },
     colors: {
+      't-primary': '#2F2F2F',
+      't-secondary': '#898989',
       white: '#FFFFFF',
       grey: '#808080',
       black: '#000000',
