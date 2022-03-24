@@ -1,27 +1,10 @@
-<p align="center">
-  <br />
-<img src="https://i.imgur.com/m6bVqCY.png" alt="screenshot-demo" height="600px"/>
-
-</p>
-
-<h1 align="center"><b>Animo Self-Sovereign Identity Demo</b></h1>
+<h1 align="center"><b>Fly</b></h1>
 <div align="center">
   
-  [![Continuous Integration](https://github.com/animo/animo-demo/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/animo/animo-demo/actions/workflows/continuous-integration.yml)
-  [![Continuous Deployment](https://github.com/animo/animo-demo/actions/workflows/continuous-deployment.yml/badge.svg)](https://github.com/animo/animo-demo/actions/workflows/continuous-deployment.yml)
-    <a
-    href="https://raw.githubusercontent.com/hyperledger/aries-framework-javascript/main/LICENSE"
-    ><img
-      alt="License"
-      src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"
-  /></a>
+  [![Continuous Integration](https://github.com/animo/fly/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/animo/fly/actions/workflows/continuous-integration.yml)
+  [![Continuous Deployment](https://github.com/animo/fly/actions/workflows/continuous-deployment.yml/badge.svg)](https://github.com/animo/fly/actions/workflows/continuous-deployment.yml)
   [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)
- 
 </div>
-
-## ✨ Hi there!
-
-Welcome to the repository of Animo's Self-Sovereign identity demo. This interactive app demonstrates the use of verifiable credentials. This demo is build using [Aries Framework Javascript (AFJ)](https://github.com/hyperledger/aries-framework-javascript). AFJ is a framework written in TypeScript for building SSI Agents and DIDComm services. This demo uses the REST API, which is part of the [Aries Framework JavaScript Extensions](https://github.com/hyperledger/aries-framework-javascript-ext) repository.
 
 ## 🛠️ Usage
 
@@ -43,7 +26,6 @@ cp .env.example .env
 | Variable                        | Description                                                                                                           |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `REACT_APP_HOST_BACKEND`        | Used in the frontend application to connect with the backend. Should be `http://localhost:5000` for development.      |
-| `REACT_APP_INSIGHTS_PROJECT_ID` | Used in the frontend application for analytics using https://getinsights.io. Should not be set for local development. |
 
 
 ### 🎛️ Server

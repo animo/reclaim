@@ -1,11 +1,10 @@
 {
-  "name": "animo-demo",
+  "name": "fly",
   "version": "0.1.0",
   "private": true,
   "license": "Apache-2.0",
-  "description": "Animo Solutions - Verifiable Credential Demo",
   "repository": {
-    "url": "https://github.com/animo/animo-demo",
+    "url": "https://github.com/animo/fly",
     "type": "git"
   },
   "workspaces": [
@@ -23,22 +22,17 @@
     "server:dev": "yarn workspace server dev",
     "server:build": "yarn workspace server build",
     "dev": "concurrently -n 'client,server ' -c 'green.bold,red.bold' 'yarn client:start' 'yarn server:dev'",
-    "test": "yarn run cypress open",
-    "build": "yarn workspace client build && yarn workspace server build",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "build": "yarn workspace client build && yarn workspace server build"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.10.2",
     "@typescript-eslint/visitor-keys": "^5.10.2",
     "concurrently": "^6.4.0",
-    "cypress": "^9.5.1",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^7.0.0",
     "eslint-import-resolver-typescript": "^2.4.0",
-    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
