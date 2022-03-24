@@ -97,7 +97,7 @@ export const CredentialCard: React.FC<CredentialCardProps> = ({
         className="bg-animo-white text-animo-black py-3 px-5 rounded-lg font-semibold shadow-sm dark:shadow-none select-none "
         onClick={onPressClaim}
       >
-        claim
+        Claim
       </motion.button>
     </div>
   )
