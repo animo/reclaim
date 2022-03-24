@@ -1,26 +1,11 @@
 import React from 'react'
 
-import { Line } from '../assets/Line'
-import { TriangleDark } from '../assets/dark/TriangleDark'
-import { TriangleLight } from '../assets/light/TriangleLight'
-
 export interface Props {
   darkMode: boolean
   handleDarkMode(): void
 }
 
 export const DarkModeSwitch: React.FC<Props> = ({ darkMode, handleDarkMode }) => {
-  return (
-    <div onClick={() => handleDarkMode()} className="flex items-center text-sm text-center py-3">
-      <p className={`${!darkMode && 'font-semibold'}  flex-none w-16 dark:text-white`}>LIGHT</p>
-      <div className="flex-1 p-2">{darkMode ? <Line color={'white'} /> : <Line color={'black'} />}</div>
-      <p className={`${darkMode && 'font-semibold'} flex-none w-16  dark:text-white`}>DARK</p>
-      <div className="absolute cursor-pointer">{darkMode ? <TriangleDark /> : <TriangleLight />}</div>
-    </div>
-  )
-}
-
-export const MiniDarkModeSwitch: React.FC<Props> = ({ darkMode, handleDarkMode }) => {
   return (
     <div className="flex">
       <button onClick={() => handleDarkMode()}>

@@ -1,30 +1,17 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { KBarProvider, KBarPortal, KBarPositioner, KBarAnimator, KBarSearch } from 'kbar'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Confetti from 'react-confetti'
 
 import { confettiFade } from '../FramerAnimations'
 import { useAppDispatch } from '../hooks/hooks'
-import { fetchAllCharacters } from '../slices/characters/charactersThunks'
-import { usePreferences } from '../slices/preferences/preferencesSelectors'
-import { resetDashboard, setDarkMode } from '../slices/preferences/preferencesSlice'
-import { fetchWallets } from '../slices/wallets/walletsThunks'
+import { setDarkMode } from '../slices/preferences/preferencesSlice'
 
 import { RenderResults } from './RenderResults'
 
 export const KBar: React.FC = ({ children }) => {
   const dispatch = useAppDispatch()
-  const { demoCompleted } = usePreferences()
   const [confettiPieces, setConfettiPieces] = useState(0)
-
-  useEffect(() => {
-    if (demoCompleted && location.pathname.includes('dashboard')) {
-      setConfettiPieces(200)
-      setTimeout(() => {
-        setConfettiPieces(0)
-      }, 10000)
-    }
-  }, [demoCompleted])
 
   const actions = [
     {
@@ -40,23 +27,12 @@ export const KBar: React.FC = ({ children }) => {
       },
     },
     {
-      id: 'resetDashboard',
-      name: 'Reset dashboard',
-      shortcut: ['d'],
-      keywords: 'Reset completed use cases',
-      perform: () => {
-        dispatch(resetDashboard())
-      },
-    },
-    {
-      id: 'resetDemo',
-      name: 'Reset demo',
+      id: 'reset',
+      name: 'Reset',
       shortcut: ['r'],
-      keywords: 'Reset demo',
+      keywords: 'Reset',
       perform: () => {
-        dispatch({ type: 'demo/RESET' })
-        dispatch(fetchWallets())
-        dispatch(fetchAllCharacters())
+        dispatch({ type: 'dashboard/RESET' })
       },
     },
     {

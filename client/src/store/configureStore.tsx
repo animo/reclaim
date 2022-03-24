@@ -8,7 +8,7 @@ import rootReducer from '../slices/index'
 export const persistConfig = {
   key: 'demo-root',
   storage,
-  whitelist: ['preferences', 'characters', 'onboarding', 'credentials', 'connection'],
+  whitelist: ['user', 'preferences', 'credentials', 'connection'],
   version: 2,
 }
 

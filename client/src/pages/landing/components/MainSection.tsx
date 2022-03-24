@@ -5,8 +5,8 @@ import { useMediaQuery } from 'react-responsive'
 import { useNavigate } from 'react-router-dom'
 
 import { buttonHover, fade, fadeDelay, landingTitle } from '../../../FramerAnimations'
-import homeIllustrationDark from '../../../assets/dark/animo-home-illustration-dark.svg'
-import homeIllustrationLight from '../../../assets/light/animo-home-illustration-light.svg'
+import homeIllustrationDark from '../../../assets/dark/home-illustration-dark.svg'
+import homeIllustrationLight from '../../../assets/light/home-illustration-light.svg'
 import { useDarkMode } from '../../../hooks/useDarkMode'
 
 export const MainSection: React.FC = () => {
@@ -16,7 +16,7 @@ export const MainSection: React.FC = () => {
   const navigate = useNavigate()
 
   const handleStart = () => {
-    navigate('/demo')
+    navigate('/sign-in')
   }
 
   const renderMobileTitle = (
@@ -84,19 +84,9 @@ export const MainSection: React.FC = () => {
           className="bg-animo-black dark:bg-animo-white text-animo-white dark:text-animo-black py-3 px-5 rounded-lg font-semibold shadow-sm dark:shadow-none select-none "
           onClick={handleStart}
         >
-          Try demo &nbsp;
+          Get Started &nbsp;
           <FiArrowRight className="inline h-6 pb-1" />
         </motion.button>
-        <a href="https://animo.id" target="_blank">
-          <motion.button
-            variants={fadeDelay}
-            whileHover={buttonHover}
-            className="bg-white dark:bg-black text-black dark:text-white py-3 px-5 ml-4 rounded-lg font-semibold shadow-sm dark:shadow-none select-none "
-          >
-            <p className="inline">Get to know us &nbsp;</p>
-            <FiExternalLink className="inline h-6 pb-1" />
-          </motion.button>
-        </a>
       </div>
     </motion.div>
   )

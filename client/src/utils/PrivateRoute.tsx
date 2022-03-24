@@ -2,9 +2,10 @@ import type { ReactChild, ReactFragment, ReactPortal } from 'react'
 
 import { Navigate } from 'react-router-dom'
 
-import { useAuth } from '../hooks/useAuth'
+import { useIsSignedIn } from '../slices/user/userSelectors'
 
 export const PrivateRoute = (props: { children: ReactChild | ReactFragment | ReactPortal }) => {
-  const auth = useAuth()
-  return auth ? <>{props.children}</> : <Navigate to="/" />
+  const isSignedIn = useIsSignedIn()
+
+  return isSignedIn ? <>{props.children}</> : <Navigate to="/" />
 }
