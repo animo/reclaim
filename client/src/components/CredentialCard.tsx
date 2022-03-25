@@ -85,13 +85,13 @@ export const CredentialCard: React.FC<CredentialCardProps> = ({
         </div>
         <div style={style.titlesContainer}>
           <h1 style={style.title}>{title}</h1>
-          {subTitle && <h3 style={style.subTitle}>By {subTitle}</h3>}
+          {subTitle && <h3 style={style.subTitle}>door {subTitle}</h3>}
         </div>
       </div>
       <div>
         {organizationsCount && (
           <div style={style.organizationContainer}>
-            <p>Organizations</p> <b>{organizationsCount}</b>
+            <p>Organisaties</p> <b>{organizationsCount}</b>
           </div>
         )}
       </div>
