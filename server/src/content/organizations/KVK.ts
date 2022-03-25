@@ -8,7 +8,7 @@ export const License: OrganizationCredential = {
   icon: '/public/organization/kvk/kvk-logo.svg',
   attributes: ['KVK nummer', 'Vestigingsnummer', 'Bedrijfsnaam', 'Rechtsvorm', 'Start datum', 'Activiteiten'],
   acceptedByNumOrganizations: 22,
-  tags: ['Gemeente Utrecht', 'Diploma'],
+  tags: ['bedrijf', 'Diploma'],
 }
 
 export const KVK: Organization = {

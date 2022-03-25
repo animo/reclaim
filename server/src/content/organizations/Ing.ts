@@ -8,7 +8,7 @@ export const Jaaroverzicht: OrganizationCredential = {
   icon: '/public/organization/ing/logo.png',
   attributes: ['Saldo Januari', 'Saldo December', 'Rente betaald'],
   acceptedByNumOrganizations: 10,
-  tags: ['Huis'],
+  tags: ['Huis', 'huis'],
 }
 
 export const Ing: Organization = {

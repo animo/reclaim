@@ -6,7 +6,7 @@ export const Diploma: OrganizationCredential = {
   icon: '/public/organization/duo/logo.png',
   attributes: ['Name', 'Date of birth'],
   acceptedByNumOrganizations: 10,
-  tags: ['huis', 'Gemeente Utrecht', 'Diploma'],
+  tags: ['huis', 'Gemeente Utrecht', 'Huis', 'huren'],
 }
 
 export const Overheid: Organization = {

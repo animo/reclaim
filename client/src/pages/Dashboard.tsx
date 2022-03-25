@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { LoginModal } from '../components/LoginModal'
 import { useAppDispatch } from '../hooks/hooks'
 import { DIGID_URL } from '../organizations'
+import { claimCredential } from '../slices/credentials/credentialsThunks'
 import { useOrganizations } from '../slices/organization/connectionSelectors'
 import { fetchAllOrganizations } from '../slices/organization/organizationThunks'
 import { useClaimableCredentials, useIsSignedIn, useUser } from '../slices/user/userSelectors'
@@ -42,8 +43,6 @@ export const DashBoard = () => {
   const navigate = useNavigate()
 
   const claimableCredentials = useClaimableCredentials()
-  // eslint-disable-next-line no-console
-  console.log(claimableCredentials)
 
   const { user } = useUser()
 
@@ -59,19 +58,17 @@ export const DashBoard = () => {
 
     organizations.forEach((org) => {
       org.availableCredentials.forEach((cred) => {
+        const onClaim = () => dispatch(claimCredential(cred.id))
         const lol2 = claimableCredentials.find((x) => x.id === cred.id)
         if (lol2) {
           const obj = {
             org: org,
-            cred: lol2,
+            cred: { ...lol2, onClaim },
           }
           lol.push(obj)
         }
       })
     })
-
-    // eslint-disable-next-line no-console
-    console.log(lol)
 
     setCredentials(lol)
   }, [organizations])

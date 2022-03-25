@@ -174,7 +174,9 @@ const Done = () => {
       }}
     >
       <FiCheckCircle size={50} style={{ margin: 30 }} />
-      <p style={{ textAlign: 'center', marginTop: 30 }}>Congratulations, you can now started owning your data.</p>
+      <p style={{ textAlign: 'center', marginTop: 30 }}>
+        Gefeliciteerd, je kunt starten met het claimen van je gegevens!
+      </p>
     </div>
   )
 }

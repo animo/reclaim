@@ -21,7 +21,7 @@ export const useClaimableCredentials = () =>
 
     const claimableCredentials = allCredentials.filter((c) => userCredentialIds.includes(c.id))
 
-    return claimableCredentials
+    return allCredentials
   })
 
 export const useClaimedCredentialIds = () => useSelector((state: RootState) => state.user.claimedCredentials)

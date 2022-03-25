@@ -1,5 +1,6 @@
 import type { User } from '../types'
 
+import { DriversLicense } from '../organizations/Cbr'
 import { Diploma1, Diploma2, Schuld } from '../organizations/Duo'
 import { Collegekaart } from '../organizations/Hu'
 import { Jaaroverzicht } from '../organizations/Ing'
@@ -7,8 +8,8 @@ import { License } from '../organizations/KVK'
 
 export const Henk: User = {
   id: '1',
-  username: 'henk',
-  name: 'Henk de Vries',
+  username: 'Jasper Roeland Duijn',
+  name: 'Jasper Roeland Duijn',
   image: 'https://avatars2.githubusercontent.com/u/1234?s=460&v=4',
   connectedServices: [],
   availableCredentials: [
@@ -17,7 +18,7 @@ export const Henk: User = {
       attributes: [
         {
           name: 'Name',
-          value: 'Henk',
+          value: 'Jasper Roeland Duijn',
         },
         {
           name: 'Date of Birth',
@@ -109,6 +110,10 @@ export const Henk: User = {
           value: 'Student X',
         },
       ],
+    },
+    {
+      credentialId: DriversLicense.id, // set all credentialID
+      attributes: [],
     },
   ],
 }

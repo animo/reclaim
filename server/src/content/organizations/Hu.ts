@@ -8,13 +8,13 @@ export const Collegekaart: OrganizationCredential = {
   icon: '/public/organization/hu/logo.png',
   attributes: ['Naam', 'Studentnummer'],
   acceptedByNumOrganizations: 42,
-  tags: ['Gemeente Utrecht', 'Diploma'],
+  tags: ['school', 'diploma'],
 }
 
 export const Hu: Organization = {
   id: '12',
   image: '/public/organization/hu/logo.png',
-  brandColor: '#52c1ea',
+  brandColor: '#B2E9FF',
   name: 'Hogeschool Utrecht',
   slug: 'hogeschool-utrecht',
   description:
