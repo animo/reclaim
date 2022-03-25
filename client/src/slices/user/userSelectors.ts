@@ -12,6 +12,7 @@ export const useAllCredentials = () =>
 export const useClaimableCredentials = () =>
   useSelector((state: RootState) => {
     const allCredentials = useAllCredentials()
+    const conOrgs = state.user.user?.connectedServices ?? []
     const userCredentials = state.user.user?.availableCredentials ?? []
 
     const userCredentialIds = userCredentials.map((c) => c.credentialId)

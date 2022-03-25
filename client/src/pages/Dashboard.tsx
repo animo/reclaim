@@ -41,9 +41,9 @@ export const DashBoard = () => {
   const { organizations } = useOrganizations()
   const navigate = useNavigate()
 
-  const resp = useClaimableCredentials()
+  const claimableCredentials = useClaimableCredentials()
   // eslint-disable-next-line no-console
-  console.log(resp)
+  console.log(claimableCredentials)
 
   const { user } = useUser()
 
@@ -56,17 +56,22 @@ export const DashBoard = () => {
 
   useEffect(() => {
     const lol: any[] = []
+
     organizations.forEach((org) => {
-      if (user?.connectedServices.includes(org.name)) {
-        org.availableCredentials.forEach((cred) => {
+      org.availableCredentials.forEach((cred) => {
+        const lol2 = claimableCredentials.find((x) => x.id === cred.id)
+        if (lol2) {
           const obj = {
             org: org,
-            cred: cred,
+            cred: lol2,
           }
           lol.push(obj)
-        })
-      }
+        }
+      })
     })
+
+    // eslint-disable-next-line no-console
+    console.log(lol)
 
     setCredentials(lol)
   }, [organizations])

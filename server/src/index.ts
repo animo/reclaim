@@ -53,7 +53,7 @@ const run = async () => {
     autoAcceptConnections: true,
     autoAcceptCredentials: AutoAcceptCredential.ContentApproved,
     useLegacyDidSovPrefix: true,
-    connectionImageUrl: "https://server.reclaim.animo.id/public/reclaim-logo.png" ,
+    connectionImageUrl: 'https://i.imgur.com/TFy5mjc.png',
   }
 
   const agent = new Agent(agentConfig, agentDependencies)

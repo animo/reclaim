@@ -47,7 +47,7 @@ export const Modal: React.FC<Props> = ({
             initial="hidden"
             animate="show"
             exit="exit"
-            className="bg-animo-white dark:bg-animo-black inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition transition-all duration-300 sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full dark:text-white"
+            className="bg-main-background dark:bg-animo-black inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition transition-all duration-300 sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full dark:text-white"
           >
             <div className=" px-4 pt-2 mt-4 sm:pb-4">
               <div className="mt-3 sm:mt-0 sm:ml-4 text-left">
