@@ -10,6 +10,7 @@ import { useOrganizations } from '../slices/organization/connectionSelectors'
 import { fetchAllOrganizations } from '../slices/organization/organizationThunks'
 import { useUser } from '../slices/user/userSelectors'
 import { addOrganization } from '../slices/user/userSlice'
+import { claimCredential } from '../slices/credentials/credentialsThunks';
 
 export const Organization = () => {
   const dispatch = useAppDispatch()
@@ -109,6 +110,7 @@ export const Organization = () => {
                       imagePath={cred.cred.icon}
                       cardColor={cred.org.brandColor}
                       organizationsCount={cred.cred.organizationsCount}
+                      onClaim={() => {dispatch(claimCredential(cred.cred.id)) }}
                     />
                   )
                 }
