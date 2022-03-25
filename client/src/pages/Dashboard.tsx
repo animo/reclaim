@@ -167,7 +167,7 @@ export const DashBoard = () => {
                       subtitle: 'by Fly',
                       cardColor: '#141414',
                       icon: '/public/animo-logo.png',
-                      organizationsCount: 41,
+                      acceptedByNumOrganizations: 41,
                       onClaim: onClaimFlyAccount,
                     },
                   },
