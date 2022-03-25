@@ -23,7 +23,7 @@ export const Uitreksel: OrganizationCredential = {
 export const GemeenteUtrecht: Organization = {
   id: '3',
   image: '/public/organization/gemeente-utrecht/gemeente-utrecht.png',
-  brandColor: '#CE070D',
+  brandColor: '#C4C4C4',
   name: 'Gemeente Utrecht',
   slug: 'gemeente-utrecht',
   description:

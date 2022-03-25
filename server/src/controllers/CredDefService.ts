@@ -49,7 +49,7 @@ export class CredDefService {
     const cd2 = await this.createCredentialDefinition({
       schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
       supportRevocation: false,
-      tag: 'Diploma',
+      tag: 'VWO Diploma',
     })
 
     const cd3 = await this.createCredentialDefinition({
@@ -87,7 +87,25 @@ export class CredDefService {
       tag: 'Rijbewijs',
     })
 
-    this.credentialDefinitions = [cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8]
+    const cd9 = await this.createCredentialDefinition({
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
+      supportRevocation: false,
+      tag: 'HBO Bachelor HBO-ICT',
+    })
+
+    const cd10 = await this.createCredentialDefinition({
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
+      supportRevocation: false,
+      tag: 'Uittreksel Handelsregister',
+    })
+
+    const cd11 = await this.createCredentialDefinition({
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
+      supportRevocation: false,
+      tag: 'Collegekaart',
+    })
+
+    this.credentialDefinitions = [cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8, cd9, cd10, cd11]
   }
 
   private async createCredentialDefinition(credentialDefinitionRequest: {
