@@ -11,10 +11,8 @@ export const useAllCredentials = () =>
 
 export const useClaimableCredentials = () =>
   useSelector((state: RootState) => {
-    const orgs = state.organization.organizations
-    const allCredentials = orgs.flatMap((o) => o.availableCredentials)
-    const userConnected = state.user.user?.connectedServices ?? []
-    const aaa = orgs.filter((o) => userConnected.includes(o.slug))
+    const allCredentials = useAllCredentials()
+    const conOrgs = state.user.user?.connectedServices ?? []
     const userCredentials = state.user.user?.availableCredentials ?? []
 
     const userCredentialIds = userCredentials.map((c) => c.credentialId)

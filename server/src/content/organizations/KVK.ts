@@ -4,9 +4,9 @@ import { v4 as uuid } from 'uuid'
 
 export const License: OrganizationCredential = {
   id: uuid(),
-  name: 'Uittreksel Handelsregister',
+  name: 'Uittreksel handelsregister',
   icon: '/public/organization/kvk/kvk-logo.svg',
-  attributes: ['Name', 'Date of birth'],
+  attributes: ['KVK nummer', 'Vestigingsnummer', 'Bedrijfsnaam', 'Rechtsvorm', 'Start datum', 'Activiteiten'],
   acceptedByNumOrganizations: 22,
   tags: ['Gemeente Utrecht', 'Diploma'],
 }

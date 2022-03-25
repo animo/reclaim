@@ -162,8 +162,8 @@ const Account: React.FC<{ userName: string }> = ({ userName }) => {
 const Done = () => {
   return (
     <div
+      className="bg-main-background"
       style={{
-        backgroundColor: '#F5FBFF',
         borderRadius: 10,
         width: '60%',
         padding: 30,
@@ -234,7 +234,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ setShowModal }) => {
       description={description}
       disabledOk={activeSlide === 3 || (activeSlide === 4 && !isSignedIn)}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%' }}>
+      <div className="bg-main-background" style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%' }}>
         {activeSlide === 0 && <First setFlow={setFlow} flow={flow} />}
         {activeSlide === 1 && <Wallet />}
         {activeSlide === 2 && <UserName setUserName={setUserName} userName={userName} />}
