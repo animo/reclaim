@@ -100,7 +100,7 @@ export class CredDefService {
     })
 
     const cd11 = await this.createCredentialDefinition({
-      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
+      schemaId: 'UCknepY9phQ3bjT7fmXQSZ:2:Collegekaart:1.0',
       supportRevocation: false,
       tag: 'Collegekaart',
     })
