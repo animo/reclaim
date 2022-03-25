@@ -8,7 +8,7 @@ import { LoginModal } from '../components/LoginModal'
 import { useAppDispatch } from '../hooks/hooks'
 import { useOrganizations } from '../slices/organization/connectionSelectors'
 import { fetchAllOrganizations } from '../slices/organization/organizationThunks'
-import { useIsSignedIn, useUser } from '../slices/user/userSelectors'
+import { useClaimableCredentials, useIsSignedIn, useUser } from '../slices/user/userSelectors'
 import { prependApiUrl } from '../utils/Url'
 
 import { CredentialCardContainer } from './dashboard/CredentialCardContainer'
@@ -39,6 +39,10 @@ export const DashBoard = () => {
   const [filteredCredentials, setFilteredCredentials] = useState<OrganizationCredential[]>([])
   const { organizations } = useOrganizations()
   const navigate = useNavigate()
+
+  const resp = useClaimableCredentials()
+  // eslint-disable-next-line no-console
+  console.log(resp)
 
   const { user } = useUser()
 

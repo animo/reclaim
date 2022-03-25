@@ -101,11 +101,12 @@ const Wallet = () => {
 
 const UserName: React.FC<{ setUserName: (_: string) => void; userName: string }> = ({ userName, setUserName }) => {
   return (
-    <div>
+    <div className="flex items-center pr-4 pl-4">
+      <p>Naam: &nbsp;&nbsp;</p>
       <input
-        className="text-t-primary text-lg border-grey border-1 border-gray-300 bg-white h-12 px-4 pr-32 rounded-lg text-sm focus:outline-none"
-        name="gebruikersnaam"
-        placeholder="Gebruikersnaam"
+        className="pl-4 text-t-primary text-lg border-color border-2 border-gray-300 bg-white h-12 px-4 pr-32 rounded-lg text-sm focus:outline-none"
+        name="Digicampus"
+        placeholder="Digicampus"
         value={userName}
         onChange={({ target: { value } }) => setUserName(value)}
       />
