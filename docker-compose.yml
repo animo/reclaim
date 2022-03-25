@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   server:
-    image: ghcr.io/animo/fly/server:release
+    image: ghcr.io/animo/fly/server:main
     deploy:
       labels:
         # Enable traefik so the container can be exposed to the outside world
@@ -32,7 +32,7 @@ services:
       - traefik
 
   client:
-    image: ghcr.io/animo/fly/client:release
+    image: ghcr.io/animo/fly/client:main
     deploy:
       labels:
         # Enable traefik so the container can be exposed to the outside world
