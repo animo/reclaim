@@ -147,7 +147,15 @@ const Account: React.FC<{ userName: string }> = ({ userName }) => {
     dispatch(registerIssueCredential({ connectionId: id, userName }))
   }
 
-  return <CredentialCard title="Fly Account" cardColor="#202223" onClaim={onClaimCredential} />
+  return (
+    <CredentialCard
+      title="Reclaim Account"
+      subTitle="Reclaim"
+      cardColor="#202223"
+      imagePath="/public/reclaim-logo.png"
+      onClaim={onClaimCredential}
+    />
+  )
 }
 
 const Done = () => {
@@ -216,8 +224,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({ setShowModal }) => {
     }
   }, [activeSlide])
 
-  if (isSignedIn) setShowModal(false)
-
   return (
     <Modal
       title={title}
@@ -225,7 +231,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ setShowModal }) => {
       onCancel={() => setShowModal(false)}
       ok="NEXT"
       description={description}
-      disabledOk={activeSlide === 3 || activeSlide === 4}
+      disabledOk={activeSlide === 3 || (activeSlide === 4 && !isSignedIn)}
     >
       <div style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%' }}>
         {activeSlide === 0 && <First setFlow={setFlow} flow={flow} />}

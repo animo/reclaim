@@ -165,10 +165,9 @@ export const DashBoard = () => {
                     },
                     cred: {
                       name: 'Reclaim Account',
-                      subtitle: 'by Fly',
+                      subtitle: 'by Reclaim',
                       cardColor: '#141414',
-                      icon: '/public/animo-logo.png',
-                      acceptedByNumOrganizations: 41,
+                      icon: '/public/reclaim-logo.png',
                       onClaim: onClaimFlyAccount,
                     },
                   },

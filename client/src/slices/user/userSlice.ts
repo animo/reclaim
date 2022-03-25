@@ -45,6 +45,7 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(registerIssueCredential.fulfilled, (state, action) => {
+      state.isSignedIn = true
       state.user = action.payload
     })
 

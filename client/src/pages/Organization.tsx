@@ -79,7 +79,7 @@ export const Organization = () => {
           <div>
             <div className="bg-white p-4 py-6 mb-12 rounded-lg flex justify-between shadow">
               <h1 className="text-4xl font-medium">{organization.name}</h1>
-              {user && user.connectedServices.includes(organization.slug) ? (
+              {user && !user.connectedServices.includes(organization.slug) ? (
                 <button
                   className={`px-4 py-2 bg-color rounded-lg text-white font-medium hover:bg-opacity-80`}
                   onClick={() => alert('mockServiceImpl')}
@@ -87,7 +87,7 @@ export const Organization = () => {
                   Connect
                 </button>
               ) : (
-                <div>lol</div>
+                <div />
               )}
             </div>
             <div className="grid grid-cols-3 gap-12">
