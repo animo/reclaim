@@ -10,11 +10,6 @@ import { fetchAllOrganizations } from '../slices/organization/organizationThunks
 import { CredentialCardContainer } from './dashboard/CredentialCardContainer'
 import { SearchBar } from './dashboard/SearchBar'
 
-interface Cred {
-  org: Organization
-  cred: OrganizationCredential
-}
-
 export const DashBoard = () => {
   const [filterList, setFilterList] = useState<string[]>([])
   const [searchInput, setSearchInput] = useState('')
@@ -54,7 +49,7 @@ export const DashBoard = () => {
   }, [searchInput])
 
   return (
-    <div>
+    <div className="bg-main-background">
       <div
         className="shadow-lg"
         style={{

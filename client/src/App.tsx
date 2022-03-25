@@ -5,6 +5,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { useAppDispatch } from './hooks/hooks'
 import { DashBoard } from './pages/Dashboard'
 import { PageNotFound } from './pages/PageNotFound'
+import { Profile } from './pages/Profile'
 import { SignIn } from './pages/SignIn'
 import { setDarkMode } from './slices/preferences/preferencesSlice'
 import { ThemeProvider } from './utils/ThemeContext'
@@ -27,6 +28,7 @@ function App() {
       <AnimatePresence exitBeforeEnter>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<DashBoard />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
