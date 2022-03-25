@@ -20,3 +20,5 @@ export const useClaimableCredentials = () =>
 
     return claimableCredentials
   })
+
+export const useClaimedCredentialIds = () => useSelector((state: RootState) => state.user.claimedCredentials)

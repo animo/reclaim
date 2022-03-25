@@ -1,9 +1,7 @@
 import type { Organization, OrganizationCredential } from '../types'
 
-import { v4 as uuid } from 'uuid'
-
 export const Diploma: OrganizationCredential = {
-  id: uuid(),
+  id: 'duo-diploma',
   name: 'Diploma',
   icon: '/public/organization/duo/logo.png',
   attributes: ['Name', 'Date of birth'],

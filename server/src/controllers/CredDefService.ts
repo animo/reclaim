@@ -2,7 +2,6 @@ import type { CredentialRecord } from '@aries-framework/core'
 import type { CredDef } from 'indy-sdk'
 
 import { Agent } from '@aries-framework/core'
-import { NotFoundError } from 'routing-controllers'
 import { Inject, Service } from 'typedi'
 
 @Service()
@@ -48,7 +47,7 @@ export class CredDefService {
     })
 
     const cd2 = await this.createCredentialDefinition({
-      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:Diploma:2.2',
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
       supportRevocation: false,
       tag: 'Diploma',
     })

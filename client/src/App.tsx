@@ -6,9 +6,7 @@ import { useAppDispatch } from './hooks/hooks'
 import { DashBoard } from './pages/Dashboard'
 import { PageNotFound } from './pages/PageNotFound'
 import { SignIn } from './pages/SignIn'
-import { LandingPage } from './pages/landing/LandingPage'
 import { setDarkMode } from './slices/preferences/preferencesSlice'
-import { PrivateRoute } from './utils/PrivateRoute'
 import { ThemeProvider } from './utils/ThemeContext'
 
 function App() {
@@ -28,15 +26,7 @@ function App() {
     <ThemeProvider>
       <AnimatePresence exitBeforeEnter>
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<LandingPage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <DashBoard />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/" element={<DashBoard />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
