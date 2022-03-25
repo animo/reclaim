@@ -29,6 +29,11 @@ export const Organization = () => {
   useEffect(() => {
     if (connect && connect === 'digid') {
       dispatch(addOrganization('dienst-uitvoerend-onderwijs'))
+      dispatch(addOrganization('svb'))
+      dispatch(addOrganization('cbr'))
+      dispatch(addOrganization('ing'))
+      dispatch(addOrganization('kvk'))
+      dispatch(addOrganization('gemeente-utrecht'))
     } else if (connect) {
       dispatch(addOrganization(connect))
     }
