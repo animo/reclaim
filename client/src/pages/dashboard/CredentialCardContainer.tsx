@@ -21,7 +21,7 @@ export const CredentialCardContainer = ({ title, description, credentials }: Cre
                 subTitle={cred.org.name}
                 imagePath={cred.cred.icon}
                 cardColor={cred.org.brandColor}
-                organizationsCount={cred.cred.organizationsCount}
+                organizationsCount={cred.cred.acceptedByNumOrganizations}
                 onClaim={cred.cred.onClaim}
               />
             )
