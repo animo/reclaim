@@ -35,7 +35,7 @@ process.on('unhandledRejection', (error) => {
 const run = async () => {
   const endpoint = process.env.AGENT_ENDPOINT ?? (await connect(5001))
   const agentConfig: InitConfig = {
-    label: 'Fly',
+    label: 'Reclaim',
     walletConfig: {
       id: 'loser123',
       key: process.env.AGENT_WALLET_KEY ?? 'Animo',
@@ -53,7 +53,7 @@ const run = async () => {
     autoAcceptConnections: true,
     autoAcceptCredentials: AutoAcceptCredential.ContentApproved,
     useLegacyDidSovPrefix: true,
-    connectionImageUrl: 'https://i.imgur.com/g3abcCO.png',
+    connectionImageUrl: "https://server.reclaim.animo.id/public/reclaim-logo.png" ,
   }
 
   const agent = new Agent(agentConfig, agentDependencies)
