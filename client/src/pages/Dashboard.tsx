@@ -2,15 +2,33 @@ import type { OrganizationCredential } from '../slices/types'
 
 import { useEffect, useState } from 'react'
 import { FiUser } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 
 import { LoginModal } from '../components/LoginModal'
 import { useAppDispatch } from '../hooks/hooks'
 import { useOrganizations } from '../slices/organization/connectionSelectors'
 import { fetchAllOrganizations } from '../slices/organization/organizationThunks'
-import { useIsSignedIn } from '../slices/user/userSelectors'
+import { useIsSignedIn, useUser } from '../slices/user/userSelectors'
+import { prependApiUrl } from '../utils/Url'
 
 import { CredentialCardContainer } from './dashboard/CredentialCardContainer'
 import { SearchBar } from './dashboard/SearchBar'
+
+const styles = (cardColor: string): Record<string, React.CSSProperties> => {
+  return {
+    card: {
+      backgroundColor: cardColor,
+      width: 210,
+      height: 210,
+      borderRadius: 20,
+      padding: 15,
+      position: 'relative',
+      color: 'white',
+      margin: 20,
+      marginBottom: 40,
+    },
+  }
+}
 
 export const DashBoard = () => {
   const isSignedIn = useIsSignedIn()
@@ -20,6 +38,9 @@ export const DashBoard = () => {
   const [credentials, setCredentials] = useState<any[]>([])
   const [filteredCredentials, setFilteredCredentials] = useState<OrganizationCredential[]>([])
   const { organizations } = useOrganizations()
+  const navigate = useNavigate()
+
+  const { user } = useUser()
 
   const onClaimFlyAccount = () => setModal(true)
 
@@ -31,13 +52,15 @@ export const DashBoard = () => {
   useEffect(() => {
     const lol: any[] = []
     organizations.forEach((org) => {
-      org.availableCredentials.forEach((cred) => {
-        const obj = {
-          org: org,
-          cred: cred,
-        }
-        lol.push(obj)
-      })
+      if (user?.connectedServices.includes(org.name)) {
+        org.availableCredentials.forEach((cred) => {
+          const obj = {
+            org: org,
+            cred: cred,
+          }
+          lol.push(obj)
+        })
+      }
     })
 
     setCredentials(lol)
@@ -174,11 +197,29 @@ export const DashBoard = () => {
                 ]}
               />
             )}
-            <CredentialCardContainer
-              title="Speciaal voor jou"
-              description="Deze gegevens zijn klaar om door jou geclaimed te worden!"
-              credentials={credentials}
-            />
+            {credentials.length > 0 && (
+              <CredentialCardContainer
+                title="Speciaal voor jou"
+                description="Deze gegevens zijn klaar om door jou geclaimed te worden!"
+                credentials={credentials}
+              />
+            )}
+            <div className="flex flex-col w-3/4 m-auto px-16">
+              <h1 className="text-4xl font-bold text-t-primary">Populaire instanties</h1>
+              <p className="text-lg text-t-secondary font-medium">
+                Maak een verbinding met deze instanties om meer dingen te kunnen claimen.
+              </p>
+              <div className="grid grid-cols-4">
+                {organizations.slice(0, 4).map((cred, idx) => {
+                  const style = styles(cred.brandColor)
+                  return (
+                    <div onClick={() => navigate(`/organization/${cred.slug}`)} style={style.card} className="">
+                      <img src={prependApiUrl(cred.image)}></img>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
           </>
         )}
         {modal && <LoginModal setShowModal={setModal} />}
