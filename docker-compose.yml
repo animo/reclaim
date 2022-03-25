@@ -2,29 +2,54 @@ version: '3.5'
 
 services:
   server:
-    platform: linux/amd64
     image: ghcr.io/animo/fly/server:release
+    deploy:
+      labels:
+        # Enable traefik so the container can be exposed to the outside world
+        traefik.enable: 'true'
+
+        # AFJ Rest agent inbound transport
+        traefik.http.routers.identifly-server-didcomm.rule: Host(`didcomm.identifly.animo.id`)
+        traefik.http.routers.identifly-server-didcomm.entrypoints: web-secure
+        traefik.http.routers.identifly-server-didcomm.tls.certresolver: zerossl
+        traefik.http.routers.identifly-server-didcomm.service: identifly-server-didcomm-service
+        traefik.http.services.identifly-server-didcomm-service.loadbalancer.server.port: 5001
+
+        # AFJ Rest API
+        traefik.http.routers.identifly-server-rest.rule: Host(`server.identifly.animo.id`)
+        traefik.http.routers.identifly-server-rest.entrypoints: web-secure
+        traefik.http.routers.identifly-server-rest.tls.certresolver: zerossl
+        traefik.http.routers.identifly-server-rest.service: identifly-server-rest-service
+        traefik.http.services.identifly-server-rest-service.loadbalancer.server.port: 5000
     environment:
-      VIRTUAL_HOST: server.demo.animo.id:5000,didcomm.demo.animo.id:5001
-      LETSENCRYPT_HOST: server.demo.animo.id,didcomm.demo.animo.id
+      AGENT_ENDPOINT: https://didcomm.identifly.animo.id
       AGENT_PUBLIC_DID_SEED: ${AGENT_PUBLIC_DID_SEED}
-      AGENT_ENDPOINT: https://didcomm.demo.animo.id
+      AGENT_WALLET_KEY: ${AGENT_WALLET_KEY}
     ports:
       - 5000
       - 5001
     networks:
       - https-proxy
+
   client:
-    image: ghcr.io/animo/animo-demo/client:release
-    environment:
-      VIRTUAL_HOST: demo.animo.id:80
-      LETSENCRYPT_HOST: demo.animo.id
+    image: ghcr.io/animo/fly/client:release
+    deploy:
+      labels:
+        # Enable traefik so the container can be exposed to the outside world
+        traefik.enable: 'true'
+
+        # AFJ Rest agent inbound transport
+        traefik.http.routers.identifly-frontend.rule: Host(`identifly.animo.id`)
+        traefik.http.routers.identifly-frontend.entrypoints: web-secure
+        traefik.http.routers.identifly-frontend.tls.certresolver: zerossl
+        traefik.http.routers.identifly-frontend.service: identifly-frontend-service
+        traefik.http.services.identifly-frontend-service.loadbalancer.server.port: 80
     networks:
-      - https-proxy
+      - traefik
     ports:
       - 80
 
 networks:
-  https-proxy:
+  traefik:
     external: true
-    name: https-proxy
+    name: traefik
