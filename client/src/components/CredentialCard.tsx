@@ -9,6 +9,7 @@ interface CredentialCardProps {
   imagePath?: string
   subTitle?: string
   organizationsCount?: number
+  onClaim?: () => void
 }
 
 const styles = (cardColor: string): Record<string, React.CSSProperties> => {
@@ -67,10 +68,9 @@ export const CredentialCard: React.FC<CredentialCardProps> = ({
   imagePath,
   organizationsCount,
   subTitle,
+  onClaim,
 }) => {
   const style = styles(cardColor)
-
-  const onPressClaim = () => window.alert('YE')
 
   return (
     <div style={style.card} className="shadow-lg">
@@ -95,7 +95,7 @@ export const CredentialCard: React.FC<CredentialCardProps> = ({
         variants={fadeDelay}
         whileHover={buttonHover}
         className="bg-animo-white text-animo-black py-3 px-5 rounded-lg font-semibold shadow-sm dark:shadow-none select-none "
-        onClick={onPressClaim}
+        onClick={onClaim}
       >
         claim
       </motion.button>
