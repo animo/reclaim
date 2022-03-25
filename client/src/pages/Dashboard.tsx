@@ -1,31 +1,55 @@
+import type { Organization, OrganizationCredential } from '../slices/types'
+
 import { useEffect, useState } from 'react'
 import { FiUser } from 'react-icons/fi'
+
+import { useAppDispatch } from '../hooks/hooks'
+import { useOrganizations } from '../slices/organization/connectionSelectors'
+import { fetchAllOrganizations } from '../slices/organization/organizationThunks'
 
 import { CredentialCardContainer } from './dashboard/CredentialCardContainer'
 import { SearchBar } from './dashboard/SearchBar'
 
+interface Cred {
+  org: Organization
+  cred: OrganizationCredential
+}
+
 export const DashBoard = () => {
   const [searchInput, setSearchInput] = useState('')
-  const credentials = [
-    {
-      title: 'College Diploma',
-      subtitle: 'DUO',
-      cardColor: '#141414',
-      organizationsCount: 41,
-      tags: ['school', 'diploma'],
-    },
-    { title: 'College Diploma', subtitle: 'DUO', cardColor: '#141414', organizationsCount: 41 },
-    { title: 'College Diploma', subtitle: 'DUO', cardColor: '#141414', organizationsCount: 41 },
-    { title: 'College Diploma', subtitle: 'DUO', cardColor: '#141414', organizationsCount: 41 },
-    { title: 'College Diploma', subtitle: 'DUO', cardColor: '#141414', organizationsCount: 41 },
-    { title: 'College Diploma', subtitle: 'DUO', cardColor: '#141414', organizationsCount: 41 },
-  ]
+  const [credentials, setCredentials] = useState<OrganizationCredential[]>([])
+  const [filteredCredentials, setFilteredCredentials] = useState<OrganizationCredential[]>([])
+  const { organizations } = useOrganizations()
 
-  const [filteredCredentials, setFilteredCredentials] = useState<any[]>([])
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(fetchAllOrganizations())
+  }, [])
+
+  useEffect(() => {
+    // you need the organisation
+    // you need the credential
+    // make obj {org: org, credential:cred}
+
+    const lol: any[] = []
+
+    organizations.forEach((org) => {
+      org.availableCredentials.forEach((cred) => {
+        const obj = {
+          org: org,
+          cred: cred,
+        }
+        lol.push(obj)
+      })
+    })
+
+    // const creds = organizations.flatMap((x) => x.availableCredentials) as Cred[]
+    setCredentials(lol)
+  }, [organizations])
 
   useEffect(() => {
     const filtered = credentials.filter((c) => {
-      c.tags?.forEach((t) => {
+      c.tags?.forEach((t: string) => {
         if (t.indexOf(searchInput)) return c
       })
     })
@@ -94,38 +118,6 @@ export const DashBoard = () => {
           />
         </>
       )}
-
-      {/* <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', width: '45%' }}>
-          <b style={{ fontSize: 50, width: '100%' }}>Your first credential</b>
-          <h1 style={{ fontSize: 18, width: '100%', color: 'grey' }}>These are ready to be claimed by you!</h1>
-          <CredentialCard title="Fly Account" subTitle="Fly" cardColor="#0077aa" />
-        </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', width: '45%' }}>
-          <b style={{ fontSize: 50, width: '100%' }}>Selected for you</b>
-          <h1 style={{ fontSize: 18, width: '100%', color: 'grey' }}>These are ready to be claimed by you!</h1>
-          <CredentialCard
-            title="student pass"
-            subTitle="Hogeschool Utrecht"
-            cardColor="#0099ff"
-            organizationsCount={19}
-          />
-          <CredentialCard title="College diploma" subTitle="DUO" cardColor="#141414" organizationsCount={41} />
-          <CredentialCard title="Free Box" subTitle="Hello Fresh" cardColor="#90D814" />
-          <CredentialCard title="U pas" subTitle="Utrecht" cardColor="#ce070d" organizationsCount={83} />
-          <CredentialCard title="Drivers' License" subTitle="CBR" cardColor="#154272" organizationsCount={281} />
-          <CredentialCard
-            title="student pass"
-            subTitle="Hogeschool Utrecht"
-            cardColor="#0099ff"
-            organizationsCount={19}
-          />
-          <CredentialCard title="College diploma" subTitle="DUO" cardColor="#141414" organizationsCount={41} />
-          <CredentialCard title="Free Box" subTitle="Hello Fresh" cardColor="#90D814" />
-          <CredentialCard title="Drivers' License" subTitle="CBR" cardColor="#154272" organizationsCount={281} />
-          <CredentialCard title="U pas" subTitle="Utrecht" cardColor="#ce070d" organizationsCount={83} />
-        </div>
-      </div> */}
     </div>
   )
 }

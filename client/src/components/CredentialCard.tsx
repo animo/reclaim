@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import React from 'react'
 
 import { buttonHover, fadeDelay } from '../FramerAnimations'
+import { prependApiUrl } from '../utils/Url'
 
 interface CredentialCardProps {
   title: string
@@ -76,7 +77,11 @@ export const CredentialCard: React.FC<CredentialCardProps> = ({
     <div style={style.card} className="shadow-lg">
       <div style={style.headerContainer}>
         <div style={style.imageContainer}>
-          {imagePath ? <div>IMG</div> : <h1 style={{ fontWeight: 'bold' }}>{title[0]}</h1>}
+          {imagePath ? (
+            <img className="p-2" src={prependApiUrl(imagePath)} />
+          ) : (
+            <h1 style={{ fontWeight: 'bold' }}>{title}</h1>
+          )}
         </div>
         <div style={style.titlesContainer}>
           <h1 style={style.title}>{title}</h1>

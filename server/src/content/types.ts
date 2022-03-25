@@ -20,6 +20,7 @@ export interface OrganizationCredential {
   attributes: readonly string[]
   credentialDefinitionId?: string
   acceptedByNumOrganizations: number
+  tags?: string[]
 }
 
 export interface User {
