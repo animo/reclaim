@@ -10,12 +10,13 @@ export const SearchBar = ({ searchInput, setSearchInput }: SearchBarProps) => {
   }
 
   return (
-    <div className="py-2 relative mx-auto text-gray-600">
+    <div className="flex items-center py-2 relative mx-auto text-gray-600">
+      <p className="pr-4 text-xl font-medium"> Ik wil </p>
       <input
-        className="text-t-primary border-grey border-1 border-gray-300 bg-white h-12 px-5 pr-32 rounded-lg text-sm focus:outline-none"
+        className="text-t-primary text-lg border-grey border-1 border-gray-300 bg-white h-12 px-4 pr-32 rounded-lg text-sm focus:outline-none"
         type="search"
         name="search"
-        placeholder="Search"
+        placeholder="een huis kopen"
         value={searchInput}
         onChange={onChange}
       />
