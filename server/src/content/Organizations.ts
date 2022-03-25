@@ -4,10 +4,10 @@ import { Cbr } from './organizations/Cbr'
 import { Duo } from './organizations/Duo'
 import { GemeenteUtrecht } from './organizations/GemeenteUtrecht'
 import { Hu } from './organizations/Hu'
-import { Ing } from './organizations/Ing'
 import { KVK } from './organizations/KVK'
 import { Overheid } from './organizations/Overheid'
+import { Svb } from './organizations/Svb'
 
-const organizations: Organization[] = [Duo, Hu, Ing, GemeenteUtrecht, Cbr, Overheid, KVK]
+const organizations: Organization[] = [Duo, Hu, Svb, Cbr, GemeenteUtrecht, Overheid, KVK]
 
 export default organizations

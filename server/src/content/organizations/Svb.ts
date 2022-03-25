@@ -3,7 +3,7 @@ import type { Organization } from '../types'
 export const Svb: Organization = {
   id: '344',
   image: '/public/organization/svb/logo.png',
-  brandColor: '#76C2B5',
+  brandColor: '#FFFFFF',
   name: 'Sociale Verzekeringsbank',
   slug: 'svb',
   description:

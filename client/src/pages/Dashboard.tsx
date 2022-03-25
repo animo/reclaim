@@ -119,11 +119,11 @@ export const DashBoard = () => {
             }}
           >
             <h1 className="py-8 text-6xl font-semibold">
-              Claim jou data <br /> <p className="text-8xl pt-1">vandaag.</p>
+              Claim jouw data <br /> <p className="text-8xl pt-1">vandaag.</p>
             </h1>
             <h3 className="w-2/3 pt-4 text-base font-medium">
-              We have gathered all available information about you, for you! Below you will find all the credentials
-              ready for you to claim. New ones are added everyday.
+              Verbind verschillende services om meteen jou gegevens te claimen. Hieronder zie je de gegevens die je kunt
+              claimen. Er worden dagelijks nieuwe gegevens toegevoegd.
             </h3>
             <br />
             <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} />

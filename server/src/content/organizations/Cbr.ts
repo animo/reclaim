@@ -13,8 +13,8 @@ export const License: OrganizationCredential = {
 
 export const Cbr: Organization = {
   id: '4',
-  image: '/public/organization/duo/logo.png',
-  brandColor: '#E5BFD4',
+  image: '/public/organization/cbr/logo.png',
+  brandColor: '#0588F0',
   name: 'CBR',
   slug: 'cbr',
   description:

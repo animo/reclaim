@@ -14,7 +14,7 @@ export const Collegekaart: OrganizationCredential = {
 export const Hu: Organization = {
   id: '12',
   image: '/public/organization/hu/logo.png',
-  brandColor: '#EEFFC9',
+  brandColor: '#52c1ea',
   name: 'Hogeschool Utrecht',
   slug: 'hogeschool-utrecht',
   description:
