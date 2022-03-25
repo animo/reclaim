@@ -41,13 +41,13 @@ export class CredDefService {
 
   private async init() {
     const cd1 = await this.createCredentialDefinition({
-      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:Fly Identity:1.1',
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:Fly Identity:2.2',
       supportRevocation: false,
       tag: 'Fly Identity',
     })
 
     const cd2 = await this.createCredentialDefinition({
-      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:Diploma:2.2',
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
       supportRevocation: false,
       tag: 'Diploma',
     })

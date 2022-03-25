@@ -10,10 +10,16 @@ export const Henk: User = {
   availableCredentials: [
     {
       credentialId: Diploma.id,
-      attributes: {
-        name: 'Henk',
-        dateOfBirth: '1990-01-01',
-      },
+      attributes: [
+        {
+          name: 'Name',
+          value: 'Henk',
+        },
+        {
+          name: 'Date of Birth',
+          value: '1990-01-01',
+        },
+      ],
     },
   ],
 }

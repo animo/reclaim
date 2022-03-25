@@ -32,6 +32,8 @@ export const KBar: React.FC = ({ children }) => {
       shortcut: ['r'],
       keywords: 'Reset',
       perform: () => {
+        /* eslint-disable */
+        console.log('Dispatching')
         dispatch({ type: 'dashboard/RESET' })
       },
     },

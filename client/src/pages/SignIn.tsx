@@ -1,16 +1,25 @@
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { useMediaQuery } from 'react-responsive'
 import { useNavigate } from 'react-router-dom'
 
 import { buttonHover, fadeDelay } from '../FramerAnimations'
+import { QRCode } from '../components/QRCode'
+import { useConnection } from '../slices/connection/connectionSelectors'
+import { useProof } from '../slices/proof/proofSelectors'
 import { useIsSignedIn } from '../slices/user/userSelectors'
-import { signIn } from '../slices/user/userSlice'
+import { register, signIn } from '../slices/user/userThunks'
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const QR = require('qrcode.react')
 
 export const SignIn = () => {
   const isSignedIn = useIsSignedIn()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const connection = useConnection()
+  const proof = useProof()
 
   useEffect(() => {
     if (isSignedIn) {
@@ -19,11 +28,11 @@ export const SignIn = () => {
   }, [isSignedIn])
 
   const onPressSignIn = () => {
-    dispatch(signIn({ email: 'henk@animo.id' }))
+    dispatch(signIn('henk'))
   }
 
   const onPressRegister = () => {
-    alert('Register')
+    dispatch(register('henk'))
   }
 
   return (
@@ -45,6 +54,9 @@ export const SignIn = () => {
       >
         Register
       </motion.button>
+      {connection.invitationUrl && connection.state !== 'active' && (
+        <QRCode invitationUrl={connection.invitationUrl} connectionState={connection.state} />
+      )}
     </div>
   )
 }

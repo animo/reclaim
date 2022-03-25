@@ -1,5 +1,25 @@
 import type { ProofAttribute, ProofPredicateInfo } from '@aries-framework/core'
 
+export interface Organization {
+  id: string
+  image: string
+  name: string
+  type: string
+  description: string
+  brandColor: string
+  availableCredentials: OrganizationCredential[]
+}
+
+export interface OrganizationCredential {
+  id: string
+  icon: string
+  name: string
+  attributes: string[]
+  acceptedByNumOrganizations: number
+  tags: string[]
+  credentialDefinitionId?: string
+}
+
 export interface Connection {
   id: string
   state: string
@@ -54,11 +74,7 @@ export interface RequestedCredential {
 }
 
 export interface CredentialData {
-  id: string
-  icon: string
-  name: string
   credentialDefinitionId: string
-  properties?: { name: string }[]
   attributes?: Attribute[]
 }
 
@@ -95,9 +111,10 @@ export interface EndStepperItem {
 }
 
 export interface Entity {
-  name: string
-  icon: string
+  name?: string
+  icon?: string
   imageUrl?: string
+  alias?: string
 }
 
 export interface Colors {

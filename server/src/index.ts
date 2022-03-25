@@ -37,7 +37,7 @@ const run = async () => {
   const agentConfig: InitConfig = {
     label: 'Fly',
     walletConfig: {
-      id: 'Animo Solutions',
+      id: 'loser123',
       key: process.env.AGENT_WALLET_KEY ?? 'Animo',
     },
     indyLedgers: [

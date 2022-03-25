@@ -1,3 +1,8 @@
+export interface Attribute {
+  name: string
+  value: string
+}
+
 export interface Organization {
   id: string
   image: string
@@ -14,6 +19,8 @@ export interface OrganizationCredential {
   name: string
   attributes: readonly string[]
   credentialDefinitionId?: string
+  acceptedByNumOrganizations: number
+  tags?: string[]
 }
 
 export interface User {
@@ -26,5 +33,5 @@ export interface User {
 
 export interface UserCredential {
   credentialId: string
-  attributes: Record<string, string>
+  attributes: Attribute[]
 }

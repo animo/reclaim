@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 import rootReducer from '../slices/index'
 
 export const persistConfig = {
-  key: 'demo-root',
+  key: 'demo-root2',
   storage,
   whitelist: ['user', 'preferences', 'credentials', 'connection'],
   version: 2,
