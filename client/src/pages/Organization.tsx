@@ -8,11 +8,12 @@ import { CredentialCard } from '../components/CredentialCard'
 import { useAppDispatch } from '../hooks/hooks'
 import { useConnectQuery } from '../hooks/useConnectQuery'
 import { DIGID_URL } from '../organizations'
+import { claimCredential } from '../slices/credentials/credentialsThunks'
 import { useOrganizations } from '../slices/organization/connectionSelectors'
 import { fetchAllOrganizations } from '../slices/organization/organizationThunks'
 import { useUser } from '../slices/user/userSelectors'
 import { addOrganization } from '../slices/user/userSlice'
-import { claimCredential } from '../slices/credentials/credentialsThunks';
+import { prependApiUrl } from '../utils/Url'
 
 export const Organization = () => {
   const dispatch = useAppDispatch()
@@ -26,7 +27,9 @@ export const Organization = () => {
   const connect = useConnectQuery()
 
   useEffect(() => {
-    if (connect) {
+    if (connect && connect === 'digid') {
+      dispatch(addOrganization('dienst-uitvoerend-onderwijs'))
+    } else if (connect) {
       dispatch(addOrganization(connect))
     }
   }, [])
@@ -86,7 +89,7 @@ export const Organization = () => {
           className="flex items-center justify-center text-4xl font-semibold cursor-pointer"
           onClick={() => navigate('/')}
         >
-          <p className="">i</p>
+          <img src={prependApiUrl('/public/reclaim-logo.png')} style={{ borderRadius: 8 }} />
         </div>
         <div
           className="shadow-lg cursor-pointer"
@@ -122,7 +125,9 @@ export const Organization = () => {
                       imagePath={cred.cred.icon}
                       cardColor={cred.org.brandColor}
                       organizationsCount={cred.cred.organizationsCount}
-                      onClaim={() => {dispatch(claimCredential(cred.cred.id)) }}
+                      onClaim={() => {
+                        dispatch(claimCredential(cred.cred.id))
+                      }}
                     />
                   )
                 }

@@ -31,8 +31,8 @@ export const Duo: Organization = {
   id: '2',
   image: '/public/organization/duo/logo.png',
   brandColor: '#163a66',
-  name: 'Dienst Uitvoering Onderwijs',
-  slug: 'dienst-uitvoering-onderwijs',
+  name: 'Dienst Uitvoerend Onderwijs',
+  slug: 'dienst-uitvoerend-onderwijs',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
   availableCredentials: [Diploma1, Diploma2],
