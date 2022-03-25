@@ -73,13 +73,13 @@ export const DashBoard = () => {
           <p className="">i</p>
         </div>
         <div
-          className="shadow-lg"
           style={{
             color: 'white',
             marginTop: 50,
             display: 'flex',
-            justifyContent: 'space-between',
-            padding: 20,
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center',
             marginBottom: 20,
           }}
         >
