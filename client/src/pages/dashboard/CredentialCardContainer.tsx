@@ -7,7 +7,6 @@ interface CredentialCardContainerProps {
 }
 
 export const CredentialCardContainer = ({ title, description, credentials }: CredentialCardContainerProps) => {
-  // eslint-disable-next-line no-console
   return (
     <div className="flex flex-col w-3/4 m-auto px-16">
       <h1 className="text-4xl font-bold text-t-primary">{title}</h1>
@@ -23,6 +22,7 @@ export const CredentialCardContainer = ({ title, description, credentials }: Cre
                 imagePath={cred.cred.icon}
                 cardColor={cred.org.brandColor}
                 organizationsCount={cred.cred.organizationsCount}
+                onClaim={cred.cred.onClaim}
               />
             )
           }
