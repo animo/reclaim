@@ -29,7 +29,7 @@ services:
       - 5000
       - 5001
     networks:
-      - https-proxy
+      - traefik
 
   client:
     image: ghcr.io/animo/fly/client:release
