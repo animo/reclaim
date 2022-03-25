@@ -1,4 +1,4 @@
-import type { Organization, OrganizationCredential } from '../slices/types'
+import type { OrganizationCredential } from '../slices/types'
 
 import { useEffect, useState } from 'react'
 import { FiUser } from 'react-icons/fi'
@@ -55,6 +55,7 @@ export const DashBoard = () => {
   }, [searchInput])
 
   return (
+    <>
       <div className="bg-main-background">
         <div
           className="shadow-lg"
