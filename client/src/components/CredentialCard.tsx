@@ -80,7 +80,7 @@ export const CredentialCard: React.FC<CredentialCardProps> = ({
           {imagePath ? (
             <img className="p-2" src={prependApiUrl(imagePath)} />
           ) : (
-            <h1 style={{ fontWeight: 'bold' }}>{title}</h1>
+            <h1 style={{ fontWeight: 'bold' }}>{title[0]}</h1>
           )}
         </div>
         <div style={style.titlesContainer}>
