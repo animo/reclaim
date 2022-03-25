@@ -1,21 +1,21 @@
 import type { Organization, OrganizationCredential } from '../types'
 
-export const Diploma2: OrganizationCredential = {
-  id: 'duo-diploma2',
-  name: 'Diploma',
+export const Diploma: OrganizationCredential = {
+  id: 'duo-werkgeversverklaring',
+  name: 'Werkgeversverklaring',
   icon: '/public/organization/duo/logo.png',
   attributes: ['Name', 'Date of birth'],
-  acceptedByNumOrganizations: 5,
-  tags: ['Gemeente Utrecht', 'Diploma'],
+  acceptedByNumOrganizations: 10,
+  tags: ['huis', 'Gemeente Utrecht', 'Diploma'],
 }
 
-export const Duo: Organization = {
-  id: '2',
+export const Overheid: Organization = {
+  id: '8',
   image: '/public/organization/duo/logo.png',
-  brandColor: '#163a66',
-  name: 'Dienst Uitvoering Onderwijs',
-  slug: 'dienst-uitvoering-onderwijs',
+  brandColor: '#C4C4C4',
+  name: 'Nederlandse Overheid',
+  slug: 'nederlandse-overheid',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
-  availableCredentials: [Diploma2],
+  availableCredentials: [Diploma],
 }

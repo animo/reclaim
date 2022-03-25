@@ -7,7 +7,7 @@ export interface Organization {
   id: string
   image: string
   name: string
-  type: string
+  slug: string
   description: string
   brandColor: string
   availableCredentials: OrganizationCredential[]
@@ -28,6 +28,7 @@ export interface User {
   image: string
   username: string
   name: string
+  connectedServices: string[]
   availableCredentials: UserCredential[]
 }
 

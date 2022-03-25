@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 
 import { useAppDispatch } from './hooks/hooks'
 import { DashBoard } from './pages/Dashboard'
+import { Organization } from './pages/Organization'
 import { PageNotFound } from './pages/PageNotFound'
 import { Profile } from './pages/Profile'
 import { SignIn } from './pages/SignIn'
@@ -29,6 +30,7 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<DashBoard />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/organization/:name" element={<Organization />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
