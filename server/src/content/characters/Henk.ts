@@ -7,7 +7,7 @@ export const Henk: User = {
   username: 'henk',
   name: 'Henk de Vries',
   image: 'https://avatars2.githubusercontent.com/u/1234?s=460&v=4',
-  connectedServices: ['cbr', 'dienst-uitvoering-onderwijs'],
+  connectedServices: [],
   availableCredentials: [
     {
       credentialId: Diploma2.id,

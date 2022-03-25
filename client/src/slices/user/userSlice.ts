@@ -42,6 +42,11 @@ const userSlice = createSlice({
       state.isSignedIn = false
       state.user = undefined
     },
+    addOrganization(state, action) {
+      // eslint-disable-next-line no-console
+      console.log(action)
+      state.user?.connectedServices.push(action.payload)
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(registerIssueCredential.fulfilled, (state, action) => {
@@ -65,6 +70,6 @@ const userSlice = createSlice({
   },
 })
 
-export const { signOut, setSignIn } = userSlice.actions
+export const { signOut, setSignIn, addOrganization } = userSlice.actions
 
 export default userSlice.reducer

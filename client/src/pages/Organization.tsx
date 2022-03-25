@@ -9,6 +9,7 @@ import { useAppDispatch } from '../hooks/hooks'
 import { useOrganizations } from '../slices/organization/connectionSelectors'
 import { fetchAllOrganizations } from '../slices/organization/organizationThunks'
 import { useUser } from '../slices/user/userSelectors'
+import { addOrganization } from '../slices/user/userSlice'
 
 export const Organization = () => {
   const dispatch = useAppDispatch()
@@ -19,6 +20,13 @@ export const Organization = () => {
 
   const [organization, setOrganization] = useState<IOrganization | undefined>()
   const [credentials, setCredentials] = useState<any[]>([])
+
+  const onAddOrganization = () => {
+    // eslint-disable-next-line no-console
+    if (organization?.slug) {
+      dispatch(addOrganization(organization.slug))
+    }
+  }
 
   useEffect(() => {
     const lol: any[] = []
@@ -82,7 +90,7 @@ export const Organization = () => {
               {user && !user.connectedServices.includes(organization.slug) ? (
                 <button
                   className={`px-4 py-2 bg-color rounded-lg text-white font-medium hover:bg-opacity-80`}
-                  onClick={() => alert('mockServiceImpl')}
+                  onClick={onAddOrganization}
                 >
                   Connect
                 </button>
