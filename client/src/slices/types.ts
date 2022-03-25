@@ -1,5 +1,25 @@
 import type { ProofAttribute, ProofPredicateInfo } from '@aries-framework/core'
 
+export interface Organization {
+  id: string
+  image: string
+  name: string
+  type: string
+  description: string
+  brandColor: string
+  availableCredentials: OrganizationCredential[]
+}
+
+export interface OrganizationCredential {
+  id: string
+  icon: string
+  name: string
+  attributes: string[]
+  acceptedByNumOrganizations: number
+  tags: string[]
+  credentialDefinitionId?: string
+}
+
 export interface Connection {
   id: string
   state: string
