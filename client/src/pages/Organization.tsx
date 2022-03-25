@@ -1,4 +1,4 @@
-import type { Organization as IOrganization, OrganizationCredential } from '../slices/organization/organizationSlice'
+import type { Organization as IOrganization } from '../slices/organization/organizationSlice'
 
 import { useEffect, useState } from 'react'
 import { FiUser } from 'react-icons/fi'
@@ -75,11 +75,11 @@ export const Organization = () => {
         </div>
       </div>
       <div className="w-3/4 h-screen m-auto flex py-12 px-24">
-        {organization && user ? (
+        {organization ? (
           <div>
             <div className="bg-white p-4 py-6 mb-12 rounded-lg flex justify-between shadow">
               <h1 className="text-4xl font-medium">{organization.name}</h1>
-              {user.connectedServices.includes(organization.slug) ? (
+              {user && user.connectedServices.includes(organization.slug) ? (
                 <button
                   className={`px-4 py-2 bg-color rounded-lg text-white font-medium hover:bg-opacity-80`}
                   onClick={() => alert('mockServiceImpl')}
@@ -101,7 +101,6 @@ export const Organization = () => {
                       imagePath={cred.cred.icon}
                       cardColor={cred.org.brandColor}
                       organizationsCount={cred.cred.organizationsCount}
-                      user={user}
                     />
                   )
                 }
@@ -109,7 +108,7 @@ export const Organization = () => {
             </div>
           </div>
         ) : (
-          <div>Organization not found</div>
+          <div>You are not logged in.</div>
         )}
       </div>
     </div>
