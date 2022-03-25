@@ -7,6 +7,7 @@ import { LoginModal } from '../components/LoginModal'
 import { useAppDispatch } from '../hooks/hooks'
 import { useOrganizations } from '../slices/organization/connectionSelectors'
 import { fetchAllOrganizations } from '../slices/organization/organizationThunks'
+import { useIsSignedIn } from '../slices/user/userSelectors'
 
 import { CredentialCardContainer } from './dashboard/CredentialCardContainer'
 import { SearchBar } from './dashboard/SearchBar'
@@ -17,6 +18,7 @@ interface Cred {
 }
 
 export const DashBoard = () => {
+  const isSignedIn = useIsSignedIn()
   const [modal, setModal] = useState(false)
   const [filterList, setFilterList] = useState<string[]>([])
   const [searchInput, setSearchInput] = useState('')
@@ -155,26 +157,28 @@ export const DashBoard = () => {
           />
         ) : (
           <>
-            <CredentialCardContainer
-              title="Een vlugge start"
-              description="Start met het claimen van jou gegevens."
-              credentials={[
-                {
-                  org: {
-                    name: 'Identifly',
-                    brandColor: '#202223',
+            {!isSignedIn && (
+              <CredentialCardContainer
+                title="Een vlugge start"
+                description="Start met het claimen van jou gegevens."
+                credentials={[
+                  {
+                    org: {
+                      name: 'Identifly',
+                      brandColor: '#202223',
+                    },
+                    cred: {
+                      name: 'Identifly Account',
+                      subtitle: 'by Fly',
+                      cardColor: '#141414',
+                      icon: '/public/animo-logo.png',
+                      organizationsCount: 41,
+                      onClaim: onClaimFlyAccount,
+                    },
                   },
-                  cred: {
-                    name: 'Identifly Account',
-                    subtitle: 'by Fly',
-                    cardColor: '#141414',
-                    icon: '/public/animo-logo.png',
-                    organizationsCount: 41,
-                    onClaim: onClaimFlyAccount,
-                  },
-                },
-              ]}
-            />
+                ]}
+              />
+            )}
             <CredentialCardContainer
               title="Speciaal voor jou"
               description="Deze gegevens zijn klaar om door jou geclaimed te worden!"

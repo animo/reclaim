@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { FiCheckCircle, FiLogIn, FiUserPlus } from 'react-icons/fi'
+import { useDispatch } from 'react-redux'
 
+import { useConnection } from '../slices/connection/connectionSelectors'
+import { useIsSignedIn } from '../slices/user/userSelectors'
+import { registerCreateConnection, registerIssueCredential, signIn } from '../slices/user/userThunks'
 import { prependApiUrl } from '../utils/Url'
 
 import { CredentialCard } from './CredentialCard'
 import { Modal } from './Modal'
+import { QRCode } from './QRCode'
 
 type Action = 'login' | 'signup'
 
@@ -47,26 +52,28 @@ const Card: React.FC<CardProps> = ({ description, title, selected, onClick, chil
   </button>
 )
 
-const First: React.FC<CardHolderProps> = ({ flow, setFlow }) => (
-  <>
-    <Card
-      title="Sign Up"
-      description="Download your wallet and setup an account."
-      onClick={() => setFlow('signup')}
-      selected={flow === 'signup'}
-    >
-      <FiUserPlus />
-    </Card>
-    <Card
-      title="Sign In"
-      description="Use your existing account to login."
-      onClick={() => setFlow('login')}
-      selected={flow === 'login'}
-    >
-      <FiLogIn />
-    </Card>
-  </>
-)
+const First: React.FC<CardHolderProps> = ({ flow, setFlow }) => {
+  return (
+    <>
+      <Card
+        title="Sign Up"
+        description="Download your wallet and setup an account."
+        onClick={() => setFlow('signup')}
+        selected={flow === 'signup'}
+      >
+        <FiUserPlus />
+      </Card>
+      <Card
+        title="Sign In"
+        description="Use your existing account to login."
+        onClick={() => setFlow('login')}
+        selected={flow === 'login'}
+      >
+        <FiLogIn />
+      </Card>
+    </>
+  )
+}
 
 const Wallet = () => {
   const [wallet, setWallet] = useState('lissi')
@@ -92,12 +99,55 @@ const Wallet = () => {
   )
 }
 
-const QR = () => {
-  return <div style={{ width: 250, height: 250, backgroundColor: 'red' }} />
+const UserName: React.FC<{ setUserName: (_: string) => void; userName: string }> = ({ userName, setUserName }) => {
+  return (
+    <div>
+      <input
+        className="text-t-primary text-lg border-grey border-1 border-gray-300 bg-white h-12 px-4 pr-32 rounded-lg text-sm focus:outline-none"
+        name="gebruikersnaam"
+        placeholder="Gebruikersnaam"
+        value={userName}
+        onChange={({ target: { value } }) => setUserName(value)}
+      />
+    </div>
+  )
 }
 
-const Account = () => {
-  return <CredentialCard title="Fly Account" cardColor="#202223" onClaim={() => alert('YEET')} />
+const QR: React.FC<{ userName: string; setActiveSlide: (_: number) => void; activeSlide: number }> = ({
+  userName,
+  setActiveSlide,
+  activeSlide,
+}) => {
+  const { invitationUrl, state } = useConnection()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(registerCreateConnection(userName))
+  }, [])
+
+  useEffect(() => {
+    if (state === 'responded' || state === 'complete') {
+      setActiveSlide(activeSlide + 1)
+    }
+  }, [state])
+
+  if (invitationUrl && state !== 'active') {
+    return <QRCode invitationUrl={invitationUrl} connectionState={state} />
+  } else {
+    return <div className="m-auto shadow-lg rounded-lg" />
+  }
+}
+
+const Account: React.FC<{ userName: string }> = ({ userName }) => {
+  const { id } = useConnection()
+  if (!id) return <div />
+
+  const dispatch = useDispatch()
+  const onClaimCredential = () => {
+    dispatch(registerIssueCredential({ connectionId: id, userName }))
+  }
+
+  return <CredentialCard title="Fly Account" cardColor="#202223" onClaim={onClaimCredential} />
 }
 
 const Done = () => {
@@ -121,6 +171,8 @@ const Done = () => {
 }
 
 export const LoginModal: React.FC<LoginModalProps> = ({ setShowModal }) => {
+  const isSignedIn = useIsSignedIn()
+  const [userName, setUserName] = useState('')
   const [flow, setFlow] = useState<Action>('signup')
   const [activeSlide, setActiveSlide] = useState(0)
   const [title, setTitle] = useState('Choose your login')
@@ -154,10 +206,17 @@ export const LoginModal: React.FC<LoginModalProps> = ({ setShowModal }) => {
       setDescription(
         'Hey there, Gamer! Great first step into claiming your own data. Please choose one of the options below.'
       )
+    } else if (activeSlide === 5) {
+      setTitle('Accept your first card')
+      setDescription(
+        'Hey there, Gamer! Great first step into claiming your own data. Please choose one of the options below.'
+      )
     } else {
       setShowModal(false)
     }
   }, [activeSlide])
+
+  if (isSignedIn) setShowModal(false)
 
   return (
     <Modal
@@ -166,14 +225,15 @@ export const LoginModal: React.FC<LoginModalProps> = ({ setShowModal }) => {
       onCancel={() => setShowModal(false)}
       ok="NEXT"
       description={description}
-      //disabledOk={activeSlide === 2 || activeSlide === 3}
+      disabledOk={activeSlide === 3 || activeSlide === 4}
     >
       <div style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%' }}>
         {activeSlide === 0 && <First setFlow={setFlow} flow={flow} />}
         {activeSlide === 1 && <Wallet />}
-        {activeSlide === 2 && <QR />}
-        {activeSlide === 3 && <Account />}
-        {activeSlide === 4 && <Done />}
+        {activeSlide === 2 && <UserName setUserName={setUserName} userName={userName} />}
+        {activeSlide === 3 && <QR userName={userName} setActiveSlide={setActiveSlide} activeSlide={activeSlide} />}
+        {activeSlide === 4 && <Account userName={userName} />}
+        {activeSlide === 5 && <Done />}
       </div>
     </Modal>
   )

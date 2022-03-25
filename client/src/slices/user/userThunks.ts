@@ -8,51 +8,62 @@ import * as Api from '../../api/UserApi'
 import { setConnectionId } from '../connection/connectionSlice'
 import { createInvitation, fetchConnection } from '../connection/connectionThunks'
 import { fetchAllOrganizations } from '../organization/organizationThunks'
-import { createProof, createProofOOB } from '../proof/proofThunks'
+import { createProof } from '../proof/proofThunks'
 
-export const register = createAsyncThunk('user/register', async (username: string, { dispatch, getState }) => {
-  dispatch(fetchAllOrganizations())
-  const user = await Api.getUserByUsername(username)
-  /* eslint-disable */
-  console.log('calling register')
+export const registerCreateConnection = createAsyncThunk(
+  'user/registerCreateConnection',
+  async (username: string, { dispatch, getState }) => {
+    dispatch(fetchAllOrganizations())
+    const user = await Api.getUserByUsername(username)
+    /* eslint-disable */
+    console.log('calling register')
 
-  const {
-    payload: {
-      connection: { id: connectionId },
-    },
-  } = await dispatch(
-    createInvitation({
-      alias: username,
-    })
-  )
-
-  while (!['complete', 'responded'].includes((getState() as RootState).connection.state as unknown as string)) {
-    await dispatch(fetchConnection())
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-  }
-
-  const credentialDefinition = await CredentialApi.getCredentialDefinitionForTag('Fly Identity')
-
-  const {
-    data: { id: credentialId },
-  } = await CredentialApi.issueCredential(connectionId, {
-    credentialDefinitionId: credentialDefinition.data,
-    attributes: [
-      {
-        name: 'Username',
-        value: username,
+    const {
+      payload: {
+        connection: { id: connectionId },
       },
-    ],
-  })
+    } = await dispatch(
+      createInvitation({
+        alias: username,
+      })
+    )
 
-  let credential = await CredentialApi.getCredentialById(credentialId)
-  while (credential.data.state != 'done' && credential.data.state != 'credential-issued') {
-    credential = await CredentialApi.getCredentialById(credentialId)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    while (!['complete', 'responded'].includes((getState() as RootState).connection.state as unknown as string)) {
+      await dispatch(fetchConnection())
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+    }
+    return { user, connectionId }
   }
+)
 
-  return user.data
-})
+export const registerIssueCredential = createAsyncThunk(
+  'user/registerIssueCredential',
+  async ({ userName, connectionId }: { userName: string; connectionId: string }) => {
+    const user = await Api.getUserByUsername(userName)
+    console.log(user)
+    const credentialDefinition = await CredentialApi.getCredentialDefinitionForTag('Fly Identity')
+
+    const {
+      data: { id: credentialId },
+    } = await CredentialApi.issueCredential(connectionId, {
+      credentialDefinitionId: credentialDefinition.data,
+      attributes: [
+        {
+          name: 'Username',
+          value: userName,
+        },
+      ],
+    })
+
+    let credential = await CredentialApi.getCredentialById(credentialId)
+    while (credential.data.state != 'done' && credential.data.state != 'credential-issued') {
+      credential = await CredentialApi.getCredentialById(credentialId)
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+    }
+
+    return user.data
+  }
+)
 
 export const signIn = createAsyncThunk('user/signIn', async (username: string, { dispatch }) => {
   dispatch(fetchAllOrganizations())

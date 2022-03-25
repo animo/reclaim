@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { claimCredential } from '../credentials/credentialsThunks'
 
-import { register, signIn } from './userThunks'
+import { registerIssueCredential, signIn } from './userThunks'
 
 export interface User {
   id: string
@@ -40,12 +40,12 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(register.fulfilled, (state, action) => {
+    builder.addCase(registerIssueCredential.fulfilled, (state, action) => {
       state.isSignedIn = true
       state.user = action.payload
     })
 
-    builder.addCase(register.pending, (state, action) => {
+    builder.addCase(registerIssueCredential.pending, (state, action) => {
       state.isSignedIn = false
       state.user = action.payload
     })
