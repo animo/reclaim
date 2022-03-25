@@ -96,7 +96,7 @@ export const DashBoard = () => {
             style={{ width: 50, height: 50, borderRadius: 10, backgroundColor: 'white' }}
             className="flex items-center justify-center text-4xl font-semibold"
           >
-            <p className="">i</p>
+            <img src={prependApiUrl('/public/reclaim-logo.png')} style={{ borderRadius: 8 }} />
           </div>
           <div
             style={{

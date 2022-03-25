@@ -6,6 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { CredentialCard } from '../components/CredentialCard'
 import { useAppDispatch } from '../hooks/hooks'
+import { useConnectQuery } from '../hooks/useConnectQuery'
+import { DIGID_URL } from '../organizations'
 import { useOrganizations } from '../slices/organization/connectionSelectors'
 import { fetchAllOrganizations } from '../slices/organization/organizationThunks'
 import { useUser } from '../slices/user/userSelectors'
@@ -20,11 +22,21 @@ export const Organization = () => {
 
   const [organization, setOrganization] = useState<IOrganization | undefined>()
   const [credentials, setCredentials] = useState<any[]>([])
+  const connect = useConnectQuery()
+
+  useEffect(() => {
+    if (connect) {
+      dispatch(addOrganization(connect))
+    }
+  }, [])
 
   const onAddOrganization = () => {
-    // eslint-disable-next-line no-console
     if (organization?.slug) {
-      dispatch(addOrganization(organization.slug))
+      if (organization.slug === 'dienst-uitvoerend-onderwijs') {
+        window.location.href = DIGID_URL
+      } else {
+        dispatch(addOrganization(organization?.slug))
+      }
     }
   }
 
