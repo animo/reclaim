@@ -5,6 +5,7 @@ import { FiUser } from 'react-icons/fi'
 
 import { LoginModal } from '../components/LoginModal'
 import { useAppDispatch } from '../hooks/hooks'
+import { DIGID_URL } from '../organizations'
 import { useOrganizations } from '../slices/organization/connectionSelectors'
 import { fetchAllOrganizations } from '../slices/organization/organizationThunks'
 import { useIsSignedIn } from '../slices/user/userSelectors'
