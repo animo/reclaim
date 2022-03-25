@@ -213,7 +213,11 @@ export const DashBoard = () => {
                 {organizations.slice(0, 4).map((cred, idx) => {
                   const style = styles(cred.brandColor)
                   return (
-                    <div onClick={() => navigate(`/organization/${cred.slug}`)} style={style.card} className="">
+                    <div
+                      onClick={() => navigate(`/organization/${cred.slug}`)}
+                      style={style.card}
+                      className="cursor-pointer"
+                    >
                       <img src={prependApiUrl(cred.image)}></img>
                     </div>
                   )
