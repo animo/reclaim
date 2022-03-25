@@ -2,13 +2,13 @@ import type { Organization, OrganizationCredential } from '../types'
 
 import { v4 as uuid } from 'uuid'
 
-export const License: OrganizationCredential = {
+export const Jaaroverzicht: OrganizationCredential = {
   id: uuid(),
-  name: 'Bankafschrift',
+  name: 'Jaaroverzicht 2021',
   icon: '/public/organization/ing/logo.png',
-  attributes: ['Name', 'Date of birth'],
+  attributes: ['Saldo Januari', 'Saldo December', 'Rente betaald'],
   acceptedByNumOrganizations: 10,
-  tags: ['Huis', 'Diploma'],
+  tags: ['Huis'],
 }
 
 export const Ing: Organization = {
@@ -19,5 +19,5 @@ export const Ing: Organization = {
   slug: 'ing',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
-  availableCredentials: [License],
+  availableCredentials: [Jaaroverzicht],
 }
