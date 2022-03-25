@@ -6,7 +6,7 @@ export const Diploma1: OrganizationCredential = {
   icon: '/public/organization/duo/logo.png',
   attributes: ['Name', 'Date of birth'],
   acceptedByNumOrganizations: 25,
-  tags: ['Gemeente Utrecht', 'Diploma'],
+  tags: ['School', 'Diploma'],
 }
 
 export const Diploma2: OrganizationCredential = {
@@ -15,7 +15,16 @@ export const Diploma2: OrganizationCredential = {
   icon: '/public/organization/duo/logo.png',
   attributes: ['Name', 'Date of birth'],
   acceptedByNumOrganizations: 12,
-  tags: ['Gemeente Utrecht', 'Diploma'],
+  tags: ['School', 'Diploma'],
+}
+
+export const Schuld: OrganizationCredential = {
+  id: 'duo-diploma3',
+  name: 'Studieschuld overzicht',
+  icon: '/public/organization/duo/logo.png',
+  attributes: ['Name', 'Date of birth'],
+  acceptedByNumOrganizations: 5,
+  tags: ['Huis', 'School'],
 }
 
 export const Duo: Organization = {
