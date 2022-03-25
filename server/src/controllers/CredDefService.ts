@@ -52,7 +52,42 @@ export class CredDefService {
       tag: 'Diploma',
     })
 
-    this.credentialDefinitions = [cd1, cd2]
+    const cd3 = await this.createCredentialDefinition({
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
+      supportRevocation: false,
+      tag: 'Paspoort',
+    })
+
+    const cd4 = await this.createCredentialDefinition({
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
+      supportRevocation: false,
+      tag: 'Werkgeversverklaring',
+    })
+
+    const cd5 = await this.createCredentialDefinition({
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
+      supportRevocation: false,
+      tag: 'Bankafschrift',
+    })
+
+    const cd6 = await this.createCredentialDefinition({
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
+      supportRevocation: false,
+      tag: 'Uittreksel bevolkingsregister',
+    })
+
+    const cd7 = await this.createCredentialDefinition({
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
+      supportRevocation: false,
+      tag: 'U-pas',
+    })
+    const cd8 = await this.createCredentialDefinition({
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:prefs:4.0',
+      supportRevocation: false,
+      tag: 'Rijbewijs',
+    })
+
+    this.credentialDefinitions = [cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8]
   }
 
   private async createCredentialDefinition(credentialDefinitionRequest: {

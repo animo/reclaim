@@ -1,15 +1,16 @@
 import type { User } from '../types'
 
-import { Diploma } from '../organizations/Duo'
+import { Diploma2 } from '../organizations/Duo'
 
 export const Henk: User = {
   id: '1',
   username: 'henk',
   name: 'Henk de Vries',
   image: 'https://avatars2.githubusercontent.com/u/1234?s=460&v=4',
+  connectedServices: ['cbr', 'dienst-uitvoering-onderwijs'],
   availableCredentials: [
     {
-      credentialId: Diploma.id,
+      credentialId: Diploma2.id,
       attributes: [
         {
           name: 'Name',

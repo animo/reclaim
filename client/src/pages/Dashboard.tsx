@@ -1,4 +1,4 @@
-import type { Organization, OrganizationCredential } from '../slices/types'
+import type { OrganizationCredential } from '../slices/types'
 
 import { useEffect, useState } from 'react'
 import { FiUser } from 'react-icons/fi'
@@ -11,11 +11,6 @@ import { useIsSignedIn } from '../slices/user/userSelectors'
 
 import { CredentialCardContainer } from './dashboard/CredentialCardContainer'
 import { SearchBar } from './dashboard/SearchBar'
-
-interface Cred {
-  org: Organization
-  cred: OrganizationCredential
-}
 
 export const DashBoard = () => {
   const isSignedIn = useIsSignedIn()
@@ -61,7 +56,7 @@ export const DashBoard = () => {
 
   return (
     <>
-      <div>
+      <div className="bg-main-background">
         <div
           className="shadow-lg"
           style={{

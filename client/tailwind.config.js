@@ -19,6 +19,8 @@ module.exports = {
     colors: {
       't-primary': '#2F2F2F',
       't-secondary': '#898989',
+      'main-background': '#F5FBFF',
+      color: '#7392FF',
       white: '#FFFFFF',
       grey: '#808080',
       black: '#000000',

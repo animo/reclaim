@@ -11,6 +11,7 @@ export interface User {
   image: string
   username: string
   name: string
+  connectedServices: string[]
   availableCredentials: UserCredential[]
 }
 
