@@ -159,11 +159,11 @@ export const DashBoard = () => {
                 credentials={[
                   {
                     org: {
-                      name: 'Identifly',
+                      name: 'Reclaim',
                       brandColor: '#202223',
                     },
                     cred: {
-                      name: 'Identifly Account',
+                      name: 'Reclaim Account',
                       subtitle: 'by Fly',
                       cardColor: '#141414',
                       icon: '/public/animo-logo.png',

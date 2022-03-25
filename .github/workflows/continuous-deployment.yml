@@ -20,7 +20,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
           local: docker-compose.yml
-          remote: dev/identifly/docker-compose.yml
+          remote: dev/reclaim/docker-compose.yml
           host: dashboard.dev.animo.id
           username: root
           privateKey: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
@@ -36,4 +36,4 @@ jobs:
           key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           envs: AGENT_PUBLIC_DID_SEED,AGENT_WALLET_KEY
           script: |
-            AGENT_PUBLIC_DID_SEED=${AGENT_PUBLIC_DID_SEED} AGENT_WALLET_KEY=${AGENT_WALLET_KEY} docker stack deploy --compose-file dev/identifly/docker-compose.yml identifly --with-registry-auth
+            AGENT_PUBLIC_DID_SEED=${AGENT_PUBLIC_DID_SEED} AGENT_WALLET_KEY=${AGENT_WALLET_KEY} docker stack deploy --compose-file dev/reclaim/docker-compose.yml reclaim --with-registry-auth

@@ -41,9 +41,9 @@ export class CredDefService {
 
   private async init() {
     const cd1 = await this.createCredentialDefinition({
-      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:Fly Identity:2.2',
+      schemaId: 'Ehx3RZSV38pn3MYvxtHhbQ:2:Reclaim Identity:1.0',
       supportRevocation: false,
-      tag: 'Fly Identity',
+      tag: 'Reclaim Identity',
     })
 
     const cd2 = await this.createCredentialDefinition({

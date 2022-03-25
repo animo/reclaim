@@ -41,7 +41,7 @@ export const registerIssueCredential = createAsyncThunk(
   async ({ userName, connectionId }: { userName: string; connectionId: string }) => {
     const user = await Api.getUserByUsername(userName)
     console.log(user)
-    const credentialDefinition = await CredentialApi.getCredentialDefinitionForTag('Fly Identity')
+    const credentialDefinition = await CredentialApi.getCredentialDefinitionForTag('Reclaim Identity')
 
     const {
       data: { id: credentialId },
@@ -69,7 +69,7 @@ export const signIn = createAsyncThunk('user/signIn', async (username: string, {
   dispatch(fetchAllOrganizations())
   const user = await Api.getUserByUsername(username)
 
-  const credentialDefinition = await CredentialApi.getCredentialDefinitionForTag('Fly Identity')
+  const credentialDefinition = await CredentialApi.getCredentialDefinitionForTag('Reclaim Identity')
   const connection = await Api.getConnectionByUsername(username)
 
   dispatch(setConnectionId(connection.data.id))
