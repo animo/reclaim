@@ -1,6 +1,7 @@
 import type { User } from '../types'
 
 import { Diploma1, Diploma2, Schuld } from '../organizations/Duo'
+import { Collegekaart } from '../organizations/Hu'
 import { Jaaroverzicht } from '../organizations/Ing'
 import { License } from '../organizations/KVK'
 
@@ -93,6 +94,19 @@ export const Henk: User = {
         {
           name: 'Vestigingsnummer',
           value: 'ABC7180A',
+        },
+      ],
+    },
+    {
+      credentialId: Collegekaart.id, // set all credentialID
+      attributes: [
+        {
+          name: 'Studentnummer',
+          value: '17216812',
+        },
+        {
+          name: 'Naam',
+          value: 'Student X',
         },
       ],
     },
