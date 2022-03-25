@@ -12,11 +12,6 @@ import { useIsSignedIn } from '../slices/user/userSelectors'
 import { CredentialCardContainer } from './dashboard/CredentialCardContainer'
 import { SearchBar } from './dashboard/SearchBar'
 
-interface Cred {
-  org: Organization
-  cred: OrganizationCredential
-}
-
 export const DashBoard = () => {
   const isSignedIn = useIsSignedIn()
   const [modal, setModal] = useState(false)
@@ -60,8 +55,7 @@ export const DashBoard = () => {
   }, [searchInput])
 
   return (
-    <>
-      <div>
+      <div className="bg-main-background">
         <div
           className="shadow-lg"
           style={{

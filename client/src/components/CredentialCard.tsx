@@ -1,5 +1,7 @@
+import type { User } from '../slices/user/userSlice'
+
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { buttonHover, fadeDelay } from '../FramerAnimations'
 import { prependApiUrl } from '../utils/Url'
@@ -11,6 +13,7 @@ interface CredentialCardProps {
   subTitle?: string
   organizationsCount?: number
   onClaim?: () => void
+  user?: User
 }
 
 const styles = (cardColor: string): Record<string, React.CSSProperties> => {
@@ -70,7 +73,9 @@ export const CredentialCard: React.FC<CredentialCardProps> = ({
   organizationsCount,
   subTitle,
   onClaim,
+  user,
 }) => {
+  const [isClaimed, setIsClaimed] = useState(false)
   const style = styles(cardColor)
 
   return (
