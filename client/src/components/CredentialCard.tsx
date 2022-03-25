@@ -1,7 +1,10 @@
+import type { User } from '../slices/user/userSlice'
+
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { buttonHover, fadeDelay } from '../FramerAnimations'
+import { useUser } from '../slices/user/userSelectors'
 import { prependApiUrl } from '../utils/Url'
 
 interface CredentialCardProps {
@@ -71,39 +74,43 @@ export const CredentialCard: React.FC<CredentialCardProps> = ({
   subTitle,
   onClaim,
 }) => {
+  const [isClaimed, setIsClaimed] = useState(false)
   const style = styles(cardColor)
 
   return (
-    <div style={style.card} className="shadow-lg">
-      <div style={style.headerContainer}>
-        <div style={style.imageContainer}>
-          {imagePath ? (
-            <img className="p-2" src={prependApiUrl(imagePath)} />
-          ) : (
-            <h1 style={{ fontWeight: 'bold' }}>{title[0]}</h1>
+    <>
+      <div style={style.card} className="shadow-lg">
+        {isClaimed && <div className="absolute h-full w-full bg-black -m-4 opacity-40 rounded-3xl z-50" />}
+        <div style={style.headerContainer}>
+          <div style={style.imageContainer}>
+            {imagePath ? (
+              <img className="p-2" src={prependApiUrl(imagePath)} />
+            ) : (
+              <h1 style={{ fontWeight: 'bold' }}>{title[0]}</h1>
+            )}
+          </div>
+          <div style={style.titlesContainer}>
+            <h1 style={style.title}>{title}</h1>
+            {subTitle && <h3 style={style.subTitle}>door {subTitle}</h3>}
+          </div>
+        </div>
+        <div>
+          {organizationsCount && (
+            <div style={style.organizationContainer}>
+              <p>Organisaties</p> <b>{organizationsCount}</b>
+            </div>
           )}
         </div>
-        <div style={style.titlesContainer}>
-          <h1 style={style.title}>{title}</h1>
-          {subTitle && <h3 style={style.subTitle}>door {subTitle}</h3>}
-        </div>
+        <motion.button
+          style={style.button}
+          variants={fadeDelay}
+          whileHover={buttonHover}
+          className="bg-animo-white text-animo-black py-3 px-5 rounded-lg font-semibold shadow-sm dark:shadow-none select-none "
+          onClick={onClaim}
+        >
+          Claim
+        </motion.button>
       </div>
-      <div>
-        {organizationsCount && (
-          <div style={style.organizationContainer}>
-            <p>Organisaties</p> <b>{organizationsCount}</b>
-          </div>
-        )}
-      </div>
-      <motion.button
-        style={style.button}
-        variants={fadeDelay}
-        whileHover={buttonHover}
-        className="bg-animo-white text-animo-black py-3 px-5 rounded-lg font-semibold shadow-sm dark:shadow-none select-none "
-        onClick={onClaim}
-      >
-        Claim
-      </motion.button>
-    </div>
+    </>
   )
 }

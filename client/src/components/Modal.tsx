@@ -51,8 +51,8 @@ export const Modal: React.FC<Props> = ({
           >
             <div className=" px-4 pt-2 mt-4 sm:pb-4">
               <div className="mt-3 sm:mt-0 sm:ml-4 text-left">
-                <h2 className="text-xl font-medium">{title}</h2>
-                <h3 className="text-xs font-medium" style={{ color: '#898989' }}>
+                <h2 className="text-2xl py-2 pb-4 font-medium">{title}</h2>
+                <h3 className="text-base font-base pb-4" style={{ color: '#898989' }}>
                   {description}
                 </h3>
                 <div className="mt-2">{children}</div>

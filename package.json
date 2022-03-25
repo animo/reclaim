@@ -1,10 +1,10 @@
 {
-  "name": "fly",
+  "name": "reclaim",
   "version": "0.1.0",
   "private": true,
   "license": "Apache-2.0",
   "repository": {
-    "url": "https://github.com/animo/fly",
+    "url": "https://github.com/animo/reclaim",
     "type": "git"
   },
   "workspaces": [

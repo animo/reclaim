@@ -11,6 +11,7 @@ export interface User {
   image: string
   username: string
   name: string
+  connectedServices: string[]
   availableCredentials: UserCredential[]
 }
 
@@ -34,6 +35,9 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    setSignIn(state) {
+      state.isSignedIn = true
+    },
     signOut(state) {
       state.isSignedIn = false
       state.user = undefined
@@ -41,7 +45,6 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(registerIssueCredential.fulfilled, (state, action) => {
-      state.isSignedIn = true
       state.user = action.payload
     })
 
@@ -61,6 +64,6 @@ const userSlice = createSlice({
   },
 })
 
-export const { signOut } = userSlice.actions
+export const { signOut, setSignIn } = userSlice.actions
 
 export default userSlice.reducer

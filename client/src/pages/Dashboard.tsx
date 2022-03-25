@@ -1,4 +1,4 @@
-import type { Organization, OrganizationCredential } from '../slices/types'
+import type { OrganizationCredential } from '../slices/types'
 
 import { useEffect, useState } from 'react'
 import { FiUser } from 'react-icons/fi'
@@ -12,11 +12,6 @@ import { useIsSignedIn } from '../slices/user/userSelectors'
 
 import { CredentialCardContainer } from './dashboard/CredentialCardContainer'
 import { SearchBar } from './dashboard/SearchBar'
-
-interface Cred {
-  org: Organization
-  cred: OrganizationCredential
-}
 
 export const DashBoard = () => {
   const isSignedIn = useIsSignedIn()
@@ -62,7 +57,7 @@ export const DashBoard = () => {
 
   return (
     <>
-      <div>
+      <div className="bg-main-background">
         <div
           className="shadow-lg"
           style={{
@@ -165,15 +160,15 @@ export const DashBoard = () => {
                 credentials={[
                   {
                     org: {
-                      name: 'Identifly',
+                      name: 'Reclaim',
                       brandColor: '#202223',
                     },
                     cred: {
-                      name: 'Identifly Account',
+                      name: 'Reclaim Account',
                       subtitle: 'by Fly',
                       cardColor: '#141414',
                       icon: '/public/animo-logo.png',
-                      organizationsCount: 41,
+                      acceptedByNumOrganizations: 41,
                       onClaim: onClaimFlyAccount,
                     },
                   },
